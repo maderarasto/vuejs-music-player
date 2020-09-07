@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Login v-if="!token" />
+    <SpotifyPlayer v-else />
   </div>
 </template>
 
 <script>
 import Login from '@/components/Login';
+import SpotifyPlayer from '@/components/SpotifyPlayer';
 
 export default {
   name: 'App',
   components: {
-    Login
+    Login,
+    SpotifyPlayer
   },
 
   data() {
@@ -25,6 +28,9 @@ export default {
 
     if (token) {
       this.token = token;
+
+      this.$spotify.setAccessToken(token);
+      this.$spotify.getMe().then(user => this.$store.commit('setUser', user));
     }
   }
 }
