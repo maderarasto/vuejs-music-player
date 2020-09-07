@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import SpotifyAPI from 'spotify-web-api-js'
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import Utils from './utils';
 import Store from './store';
