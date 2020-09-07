@@ -1,3 +1,4 @@
+---
 <style>
 .row {
     display: flex;
@@ -28,15 +29,7 @@
     color: black;
 }
 </style>
-
-<script>
-function onLoad () {
-    console.log('a');
-}
-
-window.addEventListener('load', onLoad);
-</script>
-
+---
 # VueJS Spotify Player Clone
 
 A project represents a clone of the spotify player with using VueJS, Vuex, vue-router and Spotify API.
