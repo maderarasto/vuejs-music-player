@@ -30,20 +30,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .icon-button {
   display: flex;
   width: 100%;
   padding: 10px 0;
-  border-radius: 10px;
+  border-radius: 7px;
 
   text-decoration: none;
   cursor: pointer;
 }
 
 .icon-button i {
+  padding: 0 20px 0 10px;
   color: #d4d4d4;
-  padding: 0 20px;
 }
 
 .icon-button i:hover {

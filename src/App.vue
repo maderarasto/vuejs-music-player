@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Login v-if="token" />
+    <Login v-if="!token" />
     <SpotifyPlayer v-else />
   </div>
 </template>
@@ -25,12 +25,13 @@ export default {
   created() {
     const hashData = this.$utils.getHashData();
     const token = hashData.access_token;
-
+    console.log(hashData);
     if (token) {
       this.token = token;
 
       this.$spotify.setAccessToken(token);
       this.$spotify.getMe().then(user => this.$store.commit('setUser', user));
+      this.$spotify.getUserPlaylists().then(playlists => this.$store.commit('setPlaylists', playlists.items));
     }
   }
 }

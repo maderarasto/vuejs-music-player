@@ -24,7 +24,7 @@ const utils = {
 
   getHashData() {
     const hash = window.location.hash;
-    const data = hash.substring(1).split('&');
+    const data = hash.substring(2).split('&');
     
     window.location.hash = '';
 
