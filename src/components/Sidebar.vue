@@ -3,14 +3,14 @@
     <img class="logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
 
     <div class="main-options">
-      <IconButton fa-icon="fa-home" text="Home" :active="true" />
-      <IconButton fa-icon="fa-search" text="Search" />
-      <IconButton fa-icon="fa-book" text="Your Library" />
+      <IconButton route="/" fa-icon="fa-home" text="Home" :active="isButtonActive('/')" />
+      <IconButton route="/search" fa-icon="fa-search" text="Search" :active="isButtonActive('/search')" />
+      <IconButton route="/collection" fa-icon="fa-book" text="Your Library" :active="isButtonActive('/collection')" />
     </div>
 
     <div class="playlists-options">
       <p>Playlists</p>
-      <IconButton fa-icon="fa-heart" text="Liked Songs" />
+      <IconButton route="/" fa-icon="fa-heart" text="Liked Songs" />
       <hr />
     </div>
   </div>
@@ -23,6 +23,12 @@ export default {
   name: 'Sidebar',
   components: {
     IconButton
+  },
+
+  methods: {
+    isButtonActive(route) {
+      return this.$route.path === route;
+    }
   }
 }
 </script>

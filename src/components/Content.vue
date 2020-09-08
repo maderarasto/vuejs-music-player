@@ -1,6 +1,7 @@
 <template>
   <div class="player-content">
-
+    <router-view>
+    </router-view>
   </div>
 </template>
 

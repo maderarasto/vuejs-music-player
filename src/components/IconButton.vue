@@ -1,8 +1,8 @@
 <template>
-  <div class="icon-button" :style="buttonStyle">
+  <router-link :to="route" class="icon-button" :style="buttonStyle">
     <i v-if="faIcon" :class="iconClasses"></i>
     <h4>{{ text }}</h4>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -12,7 +12,8 @@ export default {
   props: {
     text: String,
     faIcon: String,
-    active: Boolean
+    active: Boolean,
+    route: String
   },
 
   computed: {
@@ -36,6 +37,7 @@ export default {
   padding: 10px 0;
   border-radius: 10px;
 
+  text-decoration: none;
   cursor: pointer;
 }
 

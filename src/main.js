@@ -1,10 +1,11 @@
-import Vue from 'vue'
-import SpotifyAPI from 'spotify-web-api-js'
+import Vue from 'vue';
+import SpotifyAPI from 'spotify-web-api-js';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import Utils from './utils';
 import Store from './store';
-import App from './App'
+import Router from './router';
+import App from './App';
 
 Vue.config.productionTip = false
 Vue.prototype.$utils = Utils;
@@ -12,5 +13,6 @@ Vue.prototype.$spotify = new SpotifyAPI();
 
 new Vue({
   render: h => h(App),
-  store: Store
+  store: Store,
+  router: Router
 }).$mount('#app')
