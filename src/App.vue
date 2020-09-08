@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Login v-if="!token" />
+    <Login v-if="token" />
     <SpotifyPlayer v-else />
   </div>
 </template>
