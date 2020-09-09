@@ -7,15 +7,28 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: () => import ('@/components/Dashboard')
+      name: 'Home',
+      component: () => import ('@/components/containers/Dashboard')
     },
     {
       path: '/search',
-      component: () => import('@/components/Search')
+      name: 'Search',
+      component: () => import('@/components/containers/Search')
     },
     {
       path: '/collection',
-      component: () => import('@/components/Collection')
+      name: 'Library',
+      component: () => import('@/components/containers/Collection')
+    },
+    {
+      path: '/collection/tracks',
+      name: 'LikedSongs',
+      component: () => import('@/components/containers/LikedSongs')
+    },
+    {
+      path: '/playlists/:id',
+      name: 'Playlist',
+      component: () => import('@/components/containers/Playlist')
     }
   ]
 });

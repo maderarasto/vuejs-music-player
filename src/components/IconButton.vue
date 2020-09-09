@@ -13,7 +13,7 @@ export default {
     text: String,
     faIcon: String,
     active: Boolean,
-    route: String
+    route: [ String, Object ]
   },
 
   computed: {

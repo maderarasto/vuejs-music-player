@@ -3,9 +3,9 @@
     <img class="logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
 
     <div class="main-options">
-      <IconButton route="/" fa-icon="fa-home" text="Home" :active="isButtonActive('/')" />
-      <IconButton route="/search" fa-icon="fa-search" text="Search" :active="isButtonActive('/search')" />
-      <IconButton route="/collection" fa-icon="fa-book" text="Your Library" :active="isButtonActive('/collection')" />
+      <IconButton :route="homeRoute" fa-icon="fa-home" text="Home" :active="isButtonActive('/')" />
+      <IconButton :route="searchRoute" fa-icon="fa-search" text="Search" :active="isButtonActive('/search')" />
+      <IconButton :route="libraryRoute" fa-icon="fa-book" text="Your Library" :active="isButtonActive('/collection')" />
     </div>
 
     <div class="playlists-options">
@@ -40,11 +40,24 @@ export default {
   computed: {
     playlists() {
       return this.$store.getters.playlists;
+    },
+
+    homeRoute() {
+      return { name: 'Home'}
+    },
+
+    searchRoute() {
+      return { name: 'Search'}
+    },
+
+    libraryRoute() {
+      return { name: 'Library' }
     }
   },
 
   methods: {
     isButtonActive(route) {
+      console.log(this.$route.path);
       return this.$route.path === route;
     },
 

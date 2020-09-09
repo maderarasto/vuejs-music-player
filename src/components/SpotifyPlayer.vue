@@ -1,21 +1,21 @@
 <template>
   <div class="spotify-player">
     <Sidebar />
-    <Content />
+    <PlayerBody />
     <PlayerBar />
   </div>
 </template>
 
 <script>
 import Sidebar from '@/components/Sidebar';
-import Content from '@/components/Content';
+import PlayerBody from '@/components/PlayerBody';
 import PlayerBar from '@/components/PlayerBar';
 
 export default {
   name: 'SpotifyPlayer',
   components: {
     Sidebar,
-    Content,
+    PlayerBody,
     PlayerBar
   }
 }
