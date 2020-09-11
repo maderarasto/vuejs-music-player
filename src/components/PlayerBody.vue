@@ -2,8 +2,8 @@
   <div class="player-body">
     <PlayerNav />
 
-    <div class="scroll-container" data-simplebar>
-      <div class="player-content" >
+    <div ref="scroll" class="scroll-container" data-simplebar>
+      <div ref="content" class="player-content">
         <router-view></router-view>
       </div>
     </div>
@@ -17,12 +17,14 @@ export default {
   name: 'PlayerBody',
   components: {
     PlayerNav
-  }
+  },
 }
 </script>
 
 <style>
 .player-body {
+  position: relative;
+
   width: 100%;
   height: 100%;
 

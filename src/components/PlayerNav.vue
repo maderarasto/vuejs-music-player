@@ -1,6 +1,11 @@
 <template>
   <nav class="player-nav">
-    <UserDropdown :default-style="true" />
+    <div class="nav-left">
+
+    </div>
+    <div class="nav-right">
+      <UserDropdown />
+    </div>
   </nav>
 </template>
 
@@ -17,10 +22,24 @@ export default {
 
 <style>
 .player-nav {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 
+  display: flex;
   width: 100%;
-  height: 55px;
-  border-bottom: 1px solid #303030;
+  height: 60px;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  padding: 0 10px 0 30px;
+}
+
+.nav-right {
+  padding: 0 30px 0 10px;
 }
 </style>

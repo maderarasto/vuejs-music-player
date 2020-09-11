@@ -5,6 +5,7 @@ import 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
+import './directives';
 import Utils from './utils';
 import Store from './store';
 import Router from './router';

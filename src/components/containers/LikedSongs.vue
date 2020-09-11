@@ -1,6 +1,5 @@
 <template>
   <div class="liked-songs">
-
   </div>
 </template>
 
