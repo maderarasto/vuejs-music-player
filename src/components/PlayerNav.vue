@@ -1,5 +1,5 @@
 <template>
-  <nav class="player-nav">
+  <nav :class="navClasses">
     <div class="nav-left">
 
     </div>
@@ -16,6 +16,16 @@ export default {
   name: 'PlayerNav',
   components: {
     UserDropdown
+  },
+
+  props: {
+    showOverlay: Boolean
+  },
+
+  computed: {
+    navClasses() {
+      return ['player-nav', this.showOverlay ? 'nav-overlay' : ''];
+    }
   }
 }
 </script>
@@ -33,6 +43,10 @@ export default {
 
   justify-content: space-between;
   align-items: center;
+}
+
+.player-nav.nav-overlay {
+  background-color: #040404;
 }
 
 .nav-left {

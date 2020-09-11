@@ -1,9 +1,9 @@
 <template>
   <div class="player-body">
-    <PlayerNav />
+    <PlayerNav :show-overlay="scrollTransform3d.y > 5" />
 
     <div ref="scroll" class="scroll-container" data-simplebar>
-      <div ref="content" class="player-content">
+      <div ref="content" class="player-content" @wheel="onScroll">
         <router-view></router-view>
       </div>
     </div>
@@ -18,6 +18,31 @@ export default {
   components: {
     PlayerNav
   },
+
+  data() {
+    return {
+      scrollTransform3d: {
+        x: 0,
+        y: 0,
+        z: 0
+      }
+    }
+  },
+
+  methods: {
+    onScroll() {
+      if (!this.$refs.scroll) return null;
+
+      const track = this.$refs.scroll.querySelector('.simplebar-track.simplebar-vertical');
+      const scrollbar = track.querySelector('.simplebar-scrollbar');
+
+      let transform = scrollbar.style.transform;
+      transform = transform.replace(new RegExp('^translate3d|px|[(]|[)]', 'gm'), '');
+      transform = transform.split(', ').map(value => parseInt(value));
+
+      this.scrollTransform3d.y = transform[1];
+    }
+  }
 }
 </script>
 
