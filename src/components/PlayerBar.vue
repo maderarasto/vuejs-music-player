@@ -12,9 +12,6 @@ export default {
 
 <style>
 .player-bar {
-  position: fixed;
-  bottom: 0;
-
   width: 100%;
   height: 120px;
   

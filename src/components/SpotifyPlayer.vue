@@ -1,7 +1,10 @@
 <template>
   <div class="spotify-player">
-    <Sidebar />
-    <PlayerBody />
+    <div class="container">
+      <Sidebar />
+      <PlayerBody />
+    </div>
+
     <PlayerBar />
   </div>
 </template>
@@ -24,5 +27,17 @@ export default {
 <style>
 .spotify-player {
   display: flex;
+  width: 100%;
+  height: 100%;
+
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  flex: 1;
+
+  overflow: hidden;
 }
 </style>

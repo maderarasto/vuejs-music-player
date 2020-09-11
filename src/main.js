@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import SpotifyAPI from 'spotify-web-api-js';
+import 'simplebar';
+
+import 'simplebar/dist/simplebar.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import Utils from './utils';

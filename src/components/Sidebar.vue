@@ -57,7 +57,6 @@ export default {
 
   methods: {
     isButtonActive(route) {
-      console.log(this.$route.path);
       return this.$route.path === route;
     },
 
@@ -73,7 +72,7 @@ export default {
 <style>
 .spotify-sidebar {
   width: 240px;
-  height: 100vh;
+  height: 100%;
   padding: 10px;
   box-sizing: border-box;
   

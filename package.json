@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "core-js": "^3.6.5",
+    "simplebar": "^6.0.0-beta.4",
     "spotify-web-api-js": "^1.5.0",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3",
