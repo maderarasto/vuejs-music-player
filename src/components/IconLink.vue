@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="route" class="icon-button" :style="buttonStyle">
+  <router-link :to="route" class="icon-link" :style="linkStyle">
     <i v-if="faIcon" :class="iconClasses"></i>
     <h4>{{ text }}</h4>
   </router-link>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'IconButton',
+  name: 'IconLink',
   
   props: {
     text: String,
@@ -17,7 +17,7 @@ export default {
   },
 
   computed: {
-    buttonStyle() {
+    linkStyle() {
       return {
         'background-color': this.active ? '#303030' : 'transparent'
       }
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.icon-button {
+.icon-link {
   display: flex;
   width: 100%;
   padding: 10px 0;
@@ -41,20 +41,20 @@ export default {
   cursor: pointer;
 }
 
-.icon-button i {
+.icon-link i {
   padding: 0 20px 0 10px;
   color: #d4d4d4;
 }
 
-.icon-button i:hover {
+.icon-link i:hover {
   color: white;
 }
 
-.icon-button h4 {
+.icon-link h4 {
   color: #d4d4d4;
 }
 
-.icon-button h4:hover {
+.icon-link h4:hover {
   color: white;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
   <div class="spotify-sidebar">
-    <img class="logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
+    <router-link :to="{name: 'Home'}">
+      <img class="logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
+    </router-link>
 
     <div class="main-options">
-      <IconButton :route="homeRoute" fa-icon="fa-home" text="Home" :active="isButtonActive('/')" />
-      <IconButton :route="searchRoute" fa-icon="fa-search" text="Search" :active="isButtonActive('/search')" />
-      <IconButton :route="libraryRoute" fa-icon="fa-book" text="Your Library" :active="isButtonActive('/collection')" />
+      <IconLink :route="homeRoute" fa-icon="fa-home" text="Home" :active="isLinkActive('/')" />
+      <IconLink :route="searchRoute" fa-icon="fa-search" text="Search" :active="isLinkActive('/search')" />
+      <IconLink :route="libraryRoute" fa-icon="fa-book" text="Your Library" :active="isLinkActive('/collection')" />
     </div>
 
     <div class="playlists-options">
@@ -18,23 +20,25 @@
         <h4>Liked Songs</h4>
       </router-link>
       <hr />
-      <router-link 
+      <TextLink 
         v-for="playlist in playlists" 
         :key="playlist.id"
-        :to="`/playlists/${playlist.id}`"
-        class="playlist-link"
-        :style="getLinkActiveStyle(`/playlists/${playlist.id}`)">{{ playlist.name }}</router-link>
+        :route="getPlaylistRoute(playlist)"
+        :text="playlist.name"
+        :active="isLinkActive(`/playlists/${playlist.id}`)" />
     </div>
   </div>
 </template>
 
 <script>
-import IconButton from '@/components/IconButton';
+import IconLink from '@/components/IconLink';
+import TextLink from '@/components/TextLink';
 
 export default {
   name: 'Sidebar',
   components: {
-    IconButton
+    IconLink,
+    TextLink
   },
 
   computed: {
@@ -56,20 +60,29 @@ export default {
   },
 
   methods: {
-    isButtonActive(route) {
+    isLinkActive(route) {
       return this.$route.path === route;
+    },
+
+    getPlaylistRoute(playlist) {
+      return {
+        name: 'Playlist', 
+        params: { 
+          id: playlist.id
+        }
+      };
     },
 
     getLinkActiveStyle(route) {
       return {
-        'color': this.isButtonActive(route) ? 'white' : '#d4d4d4'
+        'color': this.isLinkActive(route) ? 'white' : '#d4d4d4'
       };
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .spotify-sidebar {
   width: 240px;
   height: 100%;

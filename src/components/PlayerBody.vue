@@ -1,10 +1,10 @@
 <template>
   <div class="player-body">
-    <PlayerNav :show-overlay="scrollTransform3d.y > 5" />
+    <PlayerNav :show-overlay="scrollPosition.y > 5" />
 
     <div ref="scroll" class="scroll-container" data-simplebar>
       <div ref="content" class="player-content" @wheel="onScroll">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </div>
     </div>
   </div>
@@ -19,13 +19,9 @@ export default {
     PlayerNav
   },
 
-  data() {
-    return {
-      scrollTransform3d: {
-        x: 0,
-        y: 0,
-        z: 0
-      }
+  computed: {
+    scrollPosition() {
+      return this.$store.getters.scrollPosition;
     }
   },
 
@@ -40,7 +36,13 @@ export default {
       transform = transform.replace(new RegExp('^translate3d|px|[(]|[)]', 'gm'), '');
       transform = transform.split(', ').map(value => parseInt(value));
 
-      this.scrollTransform3d.y = transform[1];
+      this.$store.commit('setScrollPosition', {
+        x: transform[0],
+        y: transform[1],
+        z: transform[2]
+      });
+
+      console.log(this.scrollPosition);
     }
   }
 }

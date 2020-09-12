@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Store from './store';
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,11 @@ const router = new VueRouter({
       component: () => import('@/components/containers/Playlist')
     }
   ]
+});
+
+router.beforeEach((_, ___, next) => {
+  Store.commit('resetScrollPosition');
+  next();
 });
 
 export default router;

@@ -6,7 +6,12 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     user: null,
-    playlists: []
+    playlists: [],
+    scrollPosition: {
+      x: 0,
+      y: 0,
+      z: 0
+    }
   },
 
   getters: {
@@ -16,6 +21,10 @@ const store = new Vuex.Store({
 
     playlists(state) {
       return state.playlists;
+    },
+
+    scrollPosition(state) {
+      return state.scrollPosition;
     }
   },
 
@@ -28,6 +37,18 @@ const store = new Vuex.Store({
       state.playlists = [];
 
       playlists.forEach(playlist => state.playlists.push(playlist));
+    },
+
+    setScrollPosition(state, position) {
+      state.scrollPosition = position;
+    },
+
+    resetScrollPosition(state) {
+      state.scrollPosition = {
+        x: 0,
+        y: 0,
+        z: 0
+      };
     }
   }
 });

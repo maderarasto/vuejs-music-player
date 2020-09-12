@@ -100,6 +100,7 @@ export default {
 
   display: none;
   min-width: 190px;
+  border: 1px solid #303030;
   border-radius: 5px;
 
   background-color: #303030;

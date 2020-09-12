@@ -43,6 +43,7 @@ export default {
 
   justify-content: space-between;
   align-items: center;
+  /* border: 1px solid #303030; */
 }
 
 .player-nav.nav-overlay {

@@ -36,6 +36,42 @@ const utils = {
 
       return initial;
     }, {});
+  },
+
+  formatNumber(number, decimalPoint='.', separator=',') {
+    let strNumber = number.toString().replace(new RegExp('[,]|[.]', 'gm'), decimalPoint);
+    let intPart = strNumber.split(decimalPoint)[0].split('');
+    let decimalPart = strNumber.split(decimalPoint)[1];
+    let index = intPart.length - 1;
+    let tenths = 0;
+    
+    while (index >= 0) {
+      if (tenths >= 3) {
+        intPart.splice(index + 1, 0, separator)
+        tenths = 1;
+      } else {
+        tenths++;
+      }
+
+      index--;
+    }
+
+    intPart = intPart.join('');
+
+    return decimalPart != undefined ? intPart + decimalPoint + decimalPart : intPart;
+  },
+
+  parseTime(duration) {
+    const time = { hours: 0, minutes: 0, seconds: 0 };
+
+    time.seconds = Math.floor(duration / 1000);
+    time.minutes = Math.floor(time.seconds / 60);
+    time.hours = Math.floor(time.minutes / 60);
+
+    time.seconds = time.seconds % 60;
+    time.minutes = time.minutes % 60;
+
+    return time;
   }
 };
 
