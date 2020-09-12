@@ -19,6 +19,23 @@ A project represents a clone of the spotify player with using VueJS, Vuex, vue-r
 	</figure>
 </div>
 
+## Current State of the Work
+
+<div align="center" style="margin:20px;">
+	<figure>
+		<img style="padding:10px" width="400" src="./md_images/login_screen.png" />
+		<figcaption">A screen of Spotify Player Login</figcaption>
+	</figure>
+	<figure>
+		<img style="padding:10px" width="400" src="./md_images/dashboard_screen.png" />
+		<figcaption>A screen of Spotify Player Dashboard</figcaption>
+	</figure>
+	<figure>
+		<img style="padding:10px" width="400" src="./md_images/playlist_screen.png" />
+		<figcaption>A screen of Spotify Player Playlist</figcaption>
+	</figure>
+</div>
+
 ## Featured Technologies
 ```
 - VueJS Framework
