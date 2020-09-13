@@ -7,7 +7,7 @@
     padding: 0 70px;
   }
 
-  section.hero .hero-image, section.hero .hero-features {
+  section.hero .hero-image, section.hero .hero-features, section.hero .hero-features > ul {
     margin: 0 auto;
   }
 
