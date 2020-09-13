@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('./media.css');
 
 * {
   font-family: 'Nunito', sans-serif;
@@ -15,8 +16,6 @@ main {
 /* Start of Header */
 header {
   width: 100%;
-  height: 400px;
-
   background-color: hsl(141, 78%, 33%);
 }
 
@@ -79,6 +78,7 @@ header .author .social-links i.fa-linkedin:hover {
 /** Start of Hero Section */
 section.hero {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 
   justify-content: space-between;
@@ -88,10 +88,6 @@ section.hero {
 
 section.hero .hero-image {
   cursor: pointer;
-}
-
-section.hero .hero-features {
-  min-width: 400px;
 }
 
 section.hero .hero-features > ul {
@@ -157,33 +153,3 @@ section.hero .hero-features li > i {
   font-weight: bold;
 }
 /** End of Globals */
-
-@media (min-width: 1200px) {
-  header {
-    height: 250px;
-  }
-
-  section.hero {
-    padding: 0 125px;
-  }
-
-  section.hero .hero-image > img {
-    width: 600px;
-    height: 300px;
-  }
-}
-
-@media (min-width: 1600px) {
-  header {
-    height: 400px;
-  }
-
-  section.hero {
-    padding: 0 400px;
-  }
-
-  section.hero .hero-image > img {
-    width: 600px;
-    height: 300px;
-  }
-}

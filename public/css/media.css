@@ -1,0 +1,88 @@
+@media (min-width: 1024px) {
+  header {
+    height: 250px;
+  }
+
+  section.hero {
+    padding: 0 70px;
+  }
+
+  section.hero .hero-image, section.hero .hero-features {
+    margin: 0 auto;
+  }
+
+  section.hero .hero-image > img {
+    width: 800px;
+    height: 400px;
+  }
+
+  section.hero .hero-features {
+    width: 900px;
+  }
+
+  section.hero .hero-features h3 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 36pt;
+  }
+
+  section.hero .hero-features ul {
+    width: 600px;
+  }
+
+  section.hero .hero-features li {
+    font-size: 24pt;
+  }
+}
+
+@media (min-width: 1200px) {
+  header {
+    height: 250px;
+  }
+
+  section.hero {
+    padding: 0 125px;
+  }
+
+  section.hero .hero-image, section.hero .hero-features {
+    margin: 0;
+  }
+
+  section.hero .hero-image > img {
+    width: 600px;
+    height: 300px;
+  }
+
+  section.hero .hero-features {
+    width: 400px;
+  }
+
+  section.hero .hero-features h3 {
+    margin-bottom: 0.5rem;
+    text-align: left;
+    font-size: 1.75rem;
+  }
+
+  section.hero .hero-features ul {
+    width: 400px;
+  }
+
+  section.hero .hero-features li {
+    font-size: 12pt;
+  }
+}
+
+@media (min-width: 1600px) {
+  header {
+    height: 400px;
+  }
+
+  section.hero {
+    padding: 0 400px;
+  }
+
+  section.hero .hero-image > img {
+    width: 600px;
+    height: 300px;
+  }
+}
