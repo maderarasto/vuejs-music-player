@@ -1,8 +1,7 @@
 <template>
   <div class="playlist-nav">
-    <div class="button-play">
-      <i class="fas fa-play-circle"></i>
-    </div>
+    <PlaylistButton v-if="!playing" fa-icon="fa-play-circle" @click="onClickPlay" />
+    <PlaylistButton v-else fa-icon="fa-pause-circle" @click="onClickPause" />
     <div class="dropdown-options">
       <div class="icon" @click="onDropdownClick" v-click-outside="{exclude: '.dropdown-options', handler: onDropdownOutsideClick}">
         <i v-for="i in 3" :key="i" class="fas fa-circle"></i>
@@ -16,8 +15,13 @@
 </template>
 
 <script>
+import PlaylistButton from '@/components/PlaylistButton';
+
 export default {
   name: 'PlaylistNav',
+  components: {
+    PlaylistButton
+  },
 
   data() {
     return {
@@ -25,7 +29,21 @@ export default {
     }
   },
 
+  computed: {
+    playing() {
+      return this.$store.getters.playing;
+    }
+  },
+
   methods: {
+    onClickPlay() {
+      this.$store.commit('setPlaying', true);
+    },
+
+    onClickPause() {
+      this.$store.commit('setPlaying', false);
+    },
+
     onDropdownClick() {
       this.optionsActive = !this.optionsActive;
     },
@@ -44,26 +62,6 @@ export default {
   height: 100px;
   padding: 10px 0;
   align-items: center;
-}
-
-.playlist-nav .button-play {
-  width: 45px;
-  height: 45px;
-  margin: 18px;
-
-  background-color: white;
-}
-
-.playlist-nav .button-play > i{
-  font-size: 75px;
-  border-radius: 50px;
-  transform: translate(-25%, -23%);
-
-  color: #2ecc71;
-}
-
-.playlist-nav .button-play:hover > i {
-  font-size: 80px;
 }
 
 .playlist-nav .dropdown-options {
