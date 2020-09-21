@@ -93,7 +93,7 @@ export default {
   margin-bottom: 3px;
 }
 
-.dropdown-menu {
+.user-dropdown .dropdown-menu {
   position: absolute;
   top: 37px;
   right: 0;
@@ -106,7 +106,7 @@ export default {
   background-color: #303030;
 }
 
-.dropdown-menu .dropdown-item {
+.user-dropdown .dropdown-menu .dropdown-item {
   display: block;
   padding: 10px 15px;
 
@@ -116,21 +116,21 @@ export default {
   color: white;
 }
 
-.dropdown-menu .dropdown-item:hover {
+.user-dropdown .dropdown-menu .dropdown-item:hover {
   background-color: #505050;
 }
 
-.dropdown-menu .dropdown-item:first-child:hover {
+.user-dropdown .dropdown-menu .dropdown-item:first-child:hover {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.dropdown-menu .dropdown-item:last-child:hover {
+.user-dropdown .dropdown-menu .dropdown-item:last-child:hover {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.dropdown-menu.dropdown-menu-active {
+.user-dropdown .dropdown-menu.dropdown-menu-active {
   display: block;
 }
 </style>

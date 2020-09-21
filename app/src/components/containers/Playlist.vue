@@ -2,18 +2,20 @@
   <div class="playlist">
     <PlaylistHeader :playlist="playlist" />
     <div class="playlist-body">
-
+      <PlaylistNav />
     </div>
   </div>
 </template>
 
 <script>
 import PlaylistHeader from '@/components/PlaylistHeader';
+import PlaylistNav from '@/components/PlaylistNav';
 
 export default {
   name: 'Playlist',
   components: {
-    PlaylistHeader
+    PlaylistHeader,
+    PlaylistNav
   },
 
   data() {
@@ -42,5 +44,9 @@ export default {
   height: 100%;
 
   flex-direction: column;
+}
+
+.playlist .playlist-body {
+  margin: 0 50px;
 }
 </style>
