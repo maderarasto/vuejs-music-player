@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import PlaylistButton from '@/components/PlaylistButton';
+import PlaylistButton from './PlaylistButton';
 
 export default {
   name: 'PlaylistNav',

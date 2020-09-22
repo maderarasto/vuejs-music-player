@@ -3,19 +3,25 @@
     <PlaylistHeader :playlist="playlist" />
     <div class="playlist-body">
       <PlaylistNav />
+
+      <div class="playlist-items">
+        <PlaylistItem v-for="item in playlistItems" :key="item.track.id" :item="item.track" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import PlaylistHeader from '@/components/PlaylistHeader';
-import PlaylistNav from '@/components/PlaylistNav';
+import PlaylistHeader from './PlaylistHeader';
+import PlaylistNav from './PlaylistNav';
+import PlaylistItem from './PlaylistItem';
 
 export default {
   name: 'Playlist',
   components: {
     PlaylistHeader,
-    PlaylistNav
+    PlaylistNav,
+    PlaylistItem
   },
 
   data() {
@@ -27,6 +33,10 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+
+    playlistItems() {
+      return this.playlist ? this.playlist.tracks.items : [];
     }
   },
 

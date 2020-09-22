@@ -29,7 +29,7 @@ const router = new VueRouter({
     {
       path: '/playlists/:id',
       name: 'Playlist',
-      component: () => import('@/components/containers/Playlist')
+      component: () => import('@/components/playlist/Playlist')
     }
   ]
 });
