@@ -1,88 +1,110 @@
-@media (min-width: 1024px) {
-  header {
-    height: 250px;
+@media(min-width: 320px) {
+  .header .container .navbar-brand {
+    width: 200px;
   }
 
-  section.hero {
-    padding: 0 70px;
+  .hero .hero-image > img {
+      width: 250px;
+  }
+}
+
+@media(min-width: 360px) {
+  .header .container .navbar-brand {
+    width: 250px;
   }
 
-  section.hero .hero-image, section.hero .hero-features, section.hero .hero-features > ul {
+  .hero .hero-image > img {
+      width: 300px;
+  }
+}
+
+@media(min-width: 410px) {
+  .hero .hero-image > img {
+      width: 350px;
+  }
+}
+
+@media(min-width: 540px) {
+  .header .container {
+    min-width: 100%;
+  }
+
+  .hero .hero-image > img {
+      width: 450px;
+  }
+}
+
+@media(min-width: 768px) {
+  .header .container {
+      margin: 0 auto;
+      padding: 0 15px;
+  }
+
+  .hero .hero-image > img {
+      width: 650px;
+  }
+}
+
+@media(min-width: 1024px) {
+  .header {
+      height: 275px;
+  }
+
+  .header .container {
+      margin: 0 auto;
+      padding: 0 15px;
+  }
+
+  .header .container .heading {
+      display: block;
+  }
+
+  .header .container .navbar-brand {
+    display: none;
+  }
+
+  .header .container .author {
+      display: block;
+      bottom: 50px;
+      right: 40px;
+  }
+
+  .hero {
+      align-items: center;
+  }
+
+  .hero .hero-image > img {
+      width: 500px;
+      margin: 0;
+  }
+  
+  .hero .hero-features > h3, .hero .hero-features > p {
+      text-align: left;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    height: 225px;
+  }
+
+  .header .container {
+    min-width: unset;
     margin: 0 auto;
+    padding: 0 15px;
   }
 
-  section.hero .hero-image > img {
-    width: 800px;
-    height: 400px;
-  }
-
-  section.hero .hero-features {
-    width: 900px;
-  }
-
-  section.hero .hero-features h3 {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 36pt;
-  }
-
-  section.hero .hero-features ul {
+  .hero .hero-image > img {
     width: 600px;
-  }
-
-  section.hero .hero-features li {
-    font-size: 24pt;
   }
 }
 
-@media (min-width: 1200px) {
-  header {
-    height: 250px;
+@media (min-width: 1440px) {
+  .header {
+      height: 400px;
   }
 
-  section.hero {
-    padding: 0 125px;
-  }
-
-  section.hero .hero-image, section.hero .hero-features {
-    margin: 0;
-  }
-
-  section.hero .hero-image > img {
-    width: 600px;
-    height: 300px;
-  }
-
-  section.hero .hero-features {
-    width: 400px;
-  }
-
-  section.hero .hero-features h3 {
-    margin-bottom: 0.5rem;
-    text-align: left;
-    font-size: 1.75rem;
-  }
-
-  section.hero .hero-features ul {
-    width: 400px;
-  }
-
-  section.hero .hero-features li {
-    font-size: 12pt;
-  }
-}
-
-@media (min-width: 1600px) {
-  header {
-    height: 400px;
-  }
-
-  section.hero {
-    padding: 0 400px;
-  }
-
-  section.hero .hero-image > img {
-    width: 600px;
-    height: 300px;
+  .hero .hero-image > img {
+      width: 600px;
   }
 }

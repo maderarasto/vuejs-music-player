@@ -1,155 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('./media.css');
-
-* {
-  font-family: 'Nunito', sans-serif;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-
-  width: 100vw;
-  height: 100vh;
-}
-
-/* Start of Header */
-header {
+html, body {
   width: 100%;
-  background-color: hsl(141, 78%, 33%);
 }
 
-header .container {
-  position: relative !important;
+/* Start of Header Styles */
+.header {
+  width: 100%;
+  background-color: #2ecc71;
+}
+
+.header .container {
+  position: relative;
+  width: 100%;
   height: 100%;
-}
-
-header .heading {
-  position: absolute;
-  bottom: 50px;
-
   margin: 0;
   padding: 0;
 }
 
-header .heading .icons > i {
-  padding: 0 2px;
-  font-size: 30px;
+.header .container .navbar-brand {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header .container .heading {
+  position: absolute;
+  bottom: 50px;
+
+  display: none;
+}
+
+.header .heading .badges > span {
   color: white;
 }
 
-header .heading .description {
-  font-weight: normal;
+.header .heading .badges > a {
+  margin-left: 20px;
+}
+
+.header .heading > h6 {
   color: #e5e5e5;
 }
 
-header .author {
+.header .author {
   position: absolute;
   bottom: 50px;
-  right: 50px;
+  right: 0;
 
+  display: none;
   text-align: right;
 }
 
-header .author .link {
+.header .author .link {
   font-weight: bold;
   color: white;
 }
 
-header .author .social-links i {
+.header .author .social-links i {
   padding: 5px;
   font-size: 25px;
   color: white;
 }
 
-header .author .social-links i.fa-gitlab:hover {
+.header .author .social-links i.fa-gitlab:hover {
   color: #eb7551;
 }
 
-header .author .social-links i.fa-facebook:hover {
+.header .author .social-links i.fa-facebook:hover {
   color: #007bff;
 }
 
-header .author .social-links i.fa-linkedin:hover {
+.header .author .social-links i.fa-linkedin:hover {
   color: #174287 !important;
 }
-/* End of Header */
 
-/** Start of Hero Section */
-section.hero {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+/* End of Header Styles */
 
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-}
-
-section.hero .hero-image {
-  cursor: pointer;
-}
-
-section.hero .hero-features > ul {
+/* Start of Hero Styles */
+.hero {
+  margin: 0;
   padding: 0;
-  list-style: none;
 }
 
-section.hero .hero-features li {
-  line-height: 40px;
-  color: #191919;
+.hero .hero-image, .hero .hero-features {
+  margin: 10px 0;
 }
 
-section.hero .hero-features li > i {
-  padding: 0 20px;
-  color: #7e7e7e;
-}
-/** Endo of Hero Section */
-
-/** Start of Image View */
-.image-view {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  background-color: rgba(128, 125, 125, 0.7);
+.hero .hero-image > img {
+  display: block;
+  width: 225px;
+  margin: 0 auto;
 }
 
-.image-view.active {
-  display: flex;
+.hero .hero-features > h3 {
+  text-align: center;
+  padding: 10px 0;
 }
 
-.image-view .image {
-  position: relative;
-  z-index: 2;
+.hero .hero-features > p {
+  text-align: justify;
 }
+/* End of Hero Styles */
 
-.image-view .image > p {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-
-  transform: translate(-50%, 0);
-  color: white;
+/* Start of Global Styles */
+.container {
+  margin-top: 20px;
 }
-
-.image-view .close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-
-  color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-}
-/* End of Image View */
-
-/** Start of Globals */
-.nav-link.active {
-  font-weight: bold;
-}
-/** End of Globals */
+/* End of Global Styles */

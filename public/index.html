@@ -3,85 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VueJS Spotify Player Clone</title>
+  <title>VueJS Spotify Player (Clone)</title>
 
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="./css/fontawesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="./css/font_awesome.css" />
   <link rel="stylesheet" type="text/css" href="./css/main.css" />
+  <link rel="stylesheet" type="text/css" href="./css/media.css" />
 </head>
 <body>
-  <main>
-    <header>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-          <a class="navbar-brand" href="#"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <div class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href=".">VueJS Spotify Player (Clone)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-              <li class="nav-item"><a class="nav-link disabled" href="#">Wireframes/Designs</a></li>
-              <li class="nav-item"><a class="nav-link disabled" href="#">Gallery</a></li>
-            </ul>
-          </div>
-        </nav>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link disabled">Description</a></li>
+            <li class="nav-item"><a href="#" class="nav-link disabled">Screenshots</a></li>
+          </ul>
+      </nav>
 
-        <div class="heading">
-          <a class="link text-white font-weight-bold" href="https://gitlab.com/web-application-clones/vuejs-spotify-clone">
+      <div class="heading">
+        <div class="badges">
+          <span class="badge badge-danger">HTML</span>
+          <span class="badge badge-primary">CSS</span>
+          <span class="badge badge-info">VueJS (Javascript)</span>
+          <span class="badge badge-info">Vuex</span>
+          <span class="badge badge-info">Vue Router</span>
+          <a class="link text-white font-weight-bold" href="https://gitlab.com/simple-games1/bomberman-clone-game/">
             <i class="fas fa-sign-in-alt"></i>
             Project Repository
           </a>
-          <div class="icons">
-            <i class="fab fa-html5"></i>
-            <i class="fab fa-css3"></i>
-            <i class="fab fa-js"></i>
-            <i class="fab fa-vuejs"></i>
-            <i class="fab fa-font-awesome"></i>
-            <i class="fab fa-spotify"></i>
-          </div>
 
-          <h1 class="text-white">VueJS Spotify Player Clone</h1>
-          <h6 class="description">A project represents a Spotify clone created by VueJS, Vuex and Spotify API.</h6>
         </div>
 
-        <div class="author">
-          <div class="social-links">
-            <a href="https://gitlab.com/maderarasto"><i class="fab fa-gitlab"></i></a>
-            <a href="https://www.linkedin.com/in/maderarasto/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/maderarasto/"><i class="fab fa-facebook"></i></a>
-          </div>
-          <div class="text-white">Created by <a class="link" href="https://gitlab.com/maderarasto">Rastislav Madera</a></div>
-          <div class="text-white">maderarasto@gmail.com</div>
-        </div>
+        <h1 class="text-white">VueJS Spotify Player (Clone)</h1>
+        <h6 class="description">A project represents a Spotify clone developed by VueJS, Vuex, Vue Router <br />and JS Wrapper for Spotify API.</h6>
       </div>
-    </header>
-    <section class="hero row">
-      <div class="hero-image">
-        <img src="./img/playlist_screen.png" />
-        <p class="text-center">Current state of a project.</p>
-      </div>
-      <div class="hero-features">
-        <h3>What is used for building app?</h3>
-        <ul class="features">
-          <li><i class="fas fa-angle-double-right"></i>VueJS Framework</li>
-          <li><i class="fas fa-angle-double-right"></i>Vuex (state management)</li>
-          <li><i class="fas fa-angle-double-right"></i>Vue Router (route management)</li>
-          <li><i class="fas fa-angle-double-right"></i>Font Awesome 5 (icons)</li>
-          <li><i class="fas fa-angle-double-right"></i>Spotify API with Javascript Wrapper</li>
-          <li><i class="fas fa-angle-double-right"></i>Simplebar</li>
-        </ul>
-      </div>
-    </section>
 
-    <div class="image-view">
-        <div class="image">
-          <i class="fas fa-times close"></i>
-          <p class="image-description text-center"></p>
+      <div class="author">
+        <div class="social-links">
+          <a href="https://gitlab.com/maderarasto"><i class="fab fa-gitlab"></i></a>
+          <a href="https://www.linkedin.com/in/maderarasto/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.facebook.com/maderarasto/"><i class="fab fa-facebook"></i></a>
         </div>
+        <div class="text-white">Created by <a class="link" href="https://gitlab.com/maderarasto">Rastislav Madera</a></div>
+        <div class="text-white">maderarasto@gmail.com</div>
+      </div>
     </div>
-  </main>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-between hero">
+      <div class="col-lg-7 col-12 hero-image">
+        <img src="./img/image_2.png" alt="Screenshot of application" />
+        <p class="text-secondary text-center">Currently without playback playing</p>
+      </div>
+      <div class="col-lg-5 col-12 hero-features">
+        <h3>What is it about?</h3>
+        <p>A project represents a Spotify clone developed by <strong>VueJS</strong>, <strong>Vuex</strong>, <strong>Vue Router</strong> and JS Wrapper for <strong>Spotify API</strong>.</p>
+        <p>VueJS Spotify Player uses a <strong>Spotify API</strong> for authentication and for the access to user's playlists and information about the user.</p>
+        <p>In the application is used Vuex Store for maintaining a current state of application and Vue Router for maintaining different routes in the application.</p>
+        <p>If you are interested in code you can go to <a class="link" href="https://gitlab.com/simple-games1/bomberman-clone-game/">the project repository.</a></p>
+      </div>
+    </div>
+  </div>
+
 
   <script type="text/javascript" src="./js/jquery-3.5.1.slim.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
