@@ -1,7 +1,7 @@
 <template>
   <div :class="itemClasses" @mouseenter="setHovered(true)" @mouseleave="setHovered(false)">
     <div class="item-icon">
-      <i :class="iconClasses"></i>
+      <i :class="iconClasses" @click="onPlayClick"></i>
     </div>
     <div class="item-info">
       <p class="item-title">{{ title }}</p>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="item-length">
-      <span>3:54</span>
+      <span>{{ length }}</span>
     </div>
   </div>
 </template>
@@ -66,12 +66,27 @@ export default {
 
     album() {
       return this.item ? this.item.album.name : '';
+    },
+
+    duration() {
+      return this.item ? this.$utils.parseTime(this.item.duration_ms) : 
+        { hours: 0, minutes: 0, seconds: 0 };
+    },
+
+    length() {
+      const seconds = this.$utils.formatNumber(this.duration.seconds, '.', '', 2);
+
+      return `${this.duration.minutes}:${seconds}`;
     }
   },
 
   methods: {
     setHovered(hovered) {
       this.hovered = hovered;
+    },
+
+    onPlayClick() {
+      this.$store.commit('setPlayedTrack', this.item);
     },
 
     onDropdownClick() {

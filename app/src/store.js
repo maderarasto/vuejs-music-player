@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     user: null,
     playing: false,
+    playedTrack: null,
     playlists: [],
     scrollPosition: {
       x: 0,
@@ -22,6 +23,10 @@ const store = new Vuex.Store({
 
     playing(state) {
       return state.playing;
+    },
+
+    playedTrack(state) {
+      return state.playedTrack;
     },
 
     playlists(state) {
@@ -40,6 +45,10 @@ const store = new Vuex.Store({
 
     setPlaying(state, playing) {
       state.playing = playing;
+    },
+
+    setPlayedTrack(state, track) {
+      state.playedTrack = track;
     },
 
     setPlaylists(state, playlists) {

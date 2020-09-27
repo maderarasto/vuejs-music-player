@@ -38,10 +38,12 @@ const utils = {
     }, {});
   },
 
-  formatNumber(number, decimalPoint='.', separator=',') {
+  formatNumber(number, decimalPoint='.', separator=',', intCount=0) {
     let strNumber = number.toString().replace(new RegExp('[,]|[.]', 'gm'), decimalPoint);
     let intPart = strNumber.split(decimalPoint)[0].split('');
     let decimalPart = strNumber.split(decimalPoint)[1];
+
+    let leadingZeros = intCount > intPart.length ? intCount - intPart.length : 0;
     let index = intPart.length - 1;
     let tenths = 0;
     
@@ -57,6 +59,10 @@ const utils = {
     }
 
     intPart = intPart.join('');
+    
+    for (var i = 0; i < leadingZeros; i++) {
+      intPart = intPart.slice(0, 0) + '0' + intPart.slice(0);
+    }
 
     return decimalPart != undefined ? intPart + decimalPoint + decimalPart : intPart;
   },
