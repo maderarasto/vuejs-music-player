@@ -12,6 +12,6 @@ export default {
 .player-controls {
   width: 800px;
   height: 60px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 </style>

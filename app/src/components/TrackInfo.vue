@@ -1,11 +1,11 @@
 <template>
   <div class="track-info">
-    <img class="album-image" :src="albumImage ? albumImage.url : ''" />
-    <div class="info">
+    <img v-if="playedTrack" class="album-image" :src="albumImage.url" />
+    <div v-if="playedTrack" class="info">
       <a href="#" class="track-title">{{ title }}</a>
       <span class="track-artists" v-html="artists"></span>
     </div>
-    <div class="buttons">
+    <div v-if="playedTrack" class="buttons">
       <a href="#"><i class="far fa-heart"></i></a>
       <a href="#"><i class="fas fa-window-restore"></i></a>
     </div>
