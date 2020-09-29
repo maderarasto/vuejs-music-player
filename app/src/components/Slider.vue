@@ -1,5 +1,7 @@
 <template>
-  <VueSlider 
+  <VueSlider
+    :min="min" 
+    :max="max"
     :value="value"
     tooltip="none" 
     :width="width" 
@@ -27,7 +29,9 @@ export default {
 
   props: {
     value: Number,
-    width: Number
+    width: String,
+    min: Number,
+    max: Number
   },
 
   computed: {

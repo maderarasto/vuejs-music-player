@@ -46,11 +46,19 @@ export default {
 
   computed: {
     itemClasses() {
-      return [ 'playlist-item', this.hovered ? 'active' : '' ];
+      return [ 'playlist-item', this.hovered ? 'active' : '', this.playing ? 'played' : '' ];
     },
 
     iconClasses() {
       return [ 'fas', this.hovered ? 'fa-play' : 'fa-music' ];
+    },
+
+    playedTrack() {
+      return this.$store.getters.playedTrack;
+    },
+
+    playing() {
+      return this.playedTrack && this.playedTrack.id === this.item.id;
     },
 
     title() {
@@ -124,6 +132,10 @@ export default {
   color: #a6a6a6; 
 }
 
+.playlist-item.played .item-icon > i {
+  color: #2ecc71;
+}
+
 .playlist-item.active .item-icon > i {
   color: white;
 }
@@ -136,6 +148,10 @@ export default {
 .playlist-item .item-title {
   font-size: 14pt;
   color: white;
+}
+
+.playlist-item.played .item-title {
+  color: #2ecc71;
 }
 
 .playlist-item .additional-info {
@@ -227,5 +243,9 @@ export default {
   width: 100px;
   font-size: 17px;
   color: #a6a6a6;
+}
+
+.playlist-item.played .item-length {
+  color: #2ecc71;
 }
 </style>

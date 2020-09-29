@@ -4,7 +4,7 @@
     <PlayerControls />
     <div class="other-controls">
       <i :class="volumeIconClasses" @click="onMuteClick"></i>
-      <Slider v-model="volume" :width="100" />
+      <Slider v-model="volume" width="100px" />
     </div>
   </div>
 </template>
