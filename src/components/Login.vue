@@ -1,6 +1,6 @@
 <template>
   <div class="spotify-login">
-    <img class="spotify-logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
+    <img class="spotify-logo" src="@/assets/music_app_logo_large.png" alt="spotify logo" />
     <a class="btn-login" :href="authorizeURI">Login with Spotify</a>
   </div>
 </template>
@@ -31,8 +31,6 @@ export default {
   position: fixed;
   top: 40%;
   left: 50%;
-
-  width: 50%;
 
   transform: translate(-50%, -50%);
 }

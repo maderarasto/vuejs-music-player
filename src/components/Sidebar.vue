@@ -1,7 +1,7 @@
 <template>
   <div class="spotify-sidebar">
     <router-link :to="{name: 'Home'}">
-      <img class="logo" src="@/assets/spotify_logo.png" alt="spotify logo" />
+      <img class="logo" src="@/assets/music_app_logo_small.png" alt="spotify logo" />
     </router-link>
 
     <div class="main-options">
