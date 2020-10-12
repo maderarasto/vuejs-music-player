@@ -59,7 +59,7 @@ export default {
 .playlist-nav {
   display: flex;
   width: 100%;
-  height: 100px;
+  height: 80px;
   padding: 10px 0;
   align-items: center;
 }
@@ -72,7 +72,7 @@ export default {
 
 .playlist-nav .dropdown-options .icon > i {
   padding: 2px;
-  font-size: 7px;
+  font-size: 5px;
   color: #d4d4d4;
 }
 

@@ -45,7 +45,7 @@ export default {
     },
 
     trackDurationInSeconds() {
-      return this.track ? parseInt(this.track.duration_ms / 1000) : 0;
+      return this.track ? Math.ceil(this.track.duration_ms / 1000) : 0;
     },
 
     trackDuration() {

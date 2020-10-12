@@ -5,7 +5,12 @@
       <PlaylistNav />
 
       <div class="playlist-items">
-        <PlaylistItem v-for="item in playlistItems" :key="item.track.id" :item="item.track" />
+        <PlaylistItem
+          v-for="item in playlistItems"
+          :key="item.track.id"
+          :item="item.track"
+          :selected="isTrackSelected(item.track)"
+          @select="onSelect" />
       </div>
     </div>
   </div>
@@ -26,7 +31,8 @@ export default {
 
   data() {
     return {
-      playlist: null
+      playlist: null,
+      selectedItemId: null
     }
   },
 
@@ -37,6 +43,16 @@ export default {
 
     playlistItems() {
       return this.playlist ? this.playlist.tracks.items : [];
+    }
+  },
+
+  methods: {
+    onSelect(event) {
+      this.selectedItemId = event.trackId;
+    },
+
+    isTrackSelected(track) {
+      return track.id === this.selectedItemId;
     }
   },
 

@@ -25,6 +25,7 @@
         :key="playlist.id"
         :route="getPlaylistRoute(playlist)"
         :text="playlist.name"
+        font-size="11pt"
         :active="isLinkActive(`/playlists/${playlist.id}`)" />
     </div>
   </div>

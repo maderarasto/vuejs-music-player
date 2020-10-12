@@ -1,5 +1,5 @@
 <template>
-  <div :class="itemClasses" @mouseenter="setHovered(true)" @mouseleave="setHovered(false)">
+  <div :class="itemClasses" @mouseenter="setHovered(true)" @mouseleave="setHovered(false)" @click="onClick">
     <div class="item-icon">
       <i :class="iconClasses" @click="onPlayClick"></i>
     </div>
@@ -34,7 +34,8 @@ export default {
   name: 'PlaylistItem',
 
   props: {
-    item: Object
+    item: Object,
+    selected: Boolean
   },
 
   data() {
@@ -46,7 +47,7 @@ export default {
 
   computed: {
     itemClasses() {
-      return [ 'playlist-item', this.hovered ? 'active' : '', this.playing ? 'played' : '' ];
+      return [ 'playlist-item', this.selected ? 'selected' : '', this.hovered ? 'hovered' : '', this.playing ? 'played' : '' ];
     },
 
     iconClasses() {
@@ -89,6 +90,10 @@ export default {
   },
 
   methods: {
+    onClick() {
+      this.$emit('select', { trackId: this.item.id });
+    },
+
     setHovered(hovered) {
       this.hovered = hovered;
     },
@@ -114,12 +119,18 @@ export default {
   width: 100%;
   height: 50px;
   padding: 10px 0;
+  border-radius: 5px;
 
   cursor: default;
 }
 
-.playlist-item.active {
+.playlist-item.selected {
   background-color: #505050;
+  color: white;
+}
+
+.playlist-item.hovered {
+  background-color: #303030;
   color: white;
 }
 
@@ -146,7 +157,7 @@ export default {
 }
 
 .playlist-item .item-title {
-  font-size: 14pt;
+  font-size: 12pt;
   color: white;
 }
 
@@ -162,6 +173,7 @@ export default {
   display: inline;
   padding-left: 10px;
   list-style: none;
+  font-size: 10pt;
 }
 
 .playlist-item .additional-info .item-artists {
@@ -241,7 +253,7 @@ export default {
 
 .playlist-item .item-length {
   width: 100px;
-  font-size: 17px;
+  font-size: 12pt;
   color: #a6a6a6;
 }
 

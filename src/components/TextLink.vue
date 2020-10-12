@@ -10,6 +10,7 @@ export default {
   
   props: {
     text: String,
+    fontSize: String,
     active: Boolean,
     route: [ String, Object ]
   },
@@ -17,7 +18,8 @@ export default {
   computed: {
     linkStyle() {
       return {
-        'color': this.active ? 'white' : '#d4d4d4'
+        'color': this.active ? 'white' : '#d4d4d4',
+        'font-size': this.fontSize ? this.fontSize : '12pt'
       }
     }
   }

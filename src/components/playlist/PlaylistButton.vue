@@ -28,15 +28,15 @@ export default {
 
 <style>
 .playlist-button {
-  width: 45px;
-  height: 45px;
+  width: 36px;
+  height: 36px;
   margin: 18px;
 
   background-color: white;
 }
 
 .playlist-button > i{
-  font-size: 75px;
+  font-size: 60px;
   border-radius: 50px;
   transform: translate(-25%, -23%);
 
@@ -44,6 +44,6 @@ export default {
 }
 
 .playlist-button:hover > i {
-  font-size: 80px;
+  font-size: 65px;
 }
 </style>
