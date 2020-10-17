@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import SpotifyAPI from 'spotify-web-api-js';
 import 'simplebar';
 
 import 'simplebar/dist/simplebar.css';
@@ -13,7 +12,6 @@ import App from './App';
 
 Vue.config.productionTip = false
 Vue.prototype.$utils = Utils;
-Vue.prototype.$spotify = new SpotifyAPI();
 
 new Vue({
   render: h => h(App),

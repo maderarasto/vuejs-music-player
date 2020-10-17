@@ -29,14 +29,11 @@ export default {
     if (token) {
       this.token = token;
 
-      this.$spotify.setAccessToken(token);
-      this.$spotify.getMe().then(user => this.$store.commit('setUser', user));
-      this.$spotify.getUserPlaylists().then(playlists => this.$store.commit('setPlaylists', playlists.items));
-      this.$spotify.getMyCurrentPlayingTrack().then(data => {
-        const track = data ? data.item : null;
-
-        this.$store.commit('setPlayedTrack', track);
-      });
+      this.$store.dispatch('initToken', token);
+      this.$store.dispatch('loadUser');
+      this.$store.dispatch('loadSavedTracks');
+      this.$store.dispatch('loadUserPlaylists');
+      this.$store.dispatch('loadCurrentPlayingTrack');
 
       this.$router.push({ name: 'Home' });
     }

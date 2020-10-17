@@ -1,8 +1,11 @@
 <template>
-  <div class="playlist-header">
+  <div :class="['playlist-header', likedSongs ? 'liked-songs' : '']">
     <div class="content">
       <div class="playlist-image">
         <img v-if="image" :src="image.url" />
+        <div class="liked-songs" v-else>
+          <i class="fas fa-heart"></i>
+        </div>
       </div>
       <div class="playlist-info">
         <span class="playlist-type">Playlist</span>
@@ -23,12 +26,16 @@ export default {
   name: 'PlaylistHeader',
   
   props: {
-    playlist: Object
+    playlist: Object,
+    likedSongs: {
+      type: Boolean,
+      default: false
+    }
   },
 
   computed: {
     image() {
-      return this.playlist ? this.playlist.images[0] : '';
+      return this.playlist && this.playlist.images ? this.playlist.images[0] : '';
     },
 
     title() {
@@ -44,7 +51,7 @@ export default {
     },
 
     followers() {
-      return this.playlist ? this.playlist.followers.total : 0;
+      return this.playlist && this.playlist.followers ? this.playlist.followers.total : 0;
     },
 
     duration() {
@@ -84,14 +91,18 @@ export default {
 
   width: 100%;
   height: 400px;
+
   background: linear-gradient(#606060, #202020);
+}
+
+.playlist-header.liked-songs {
+  background: linear-gradient(#b62dd8, #202020);
 }
 
 .playlist-header .content {
   position: absolute;
   left: 40px;
   bottom: 30px;
-
   height: 225px;
 }
 
@@ -104,6 +115,22 @@ export default {
 .playlist-header .content .playlist-image > img{
   width: 100%;
   height: 100%;
+}
+
+.playlist-header .content .playlist-image .liked-songs {
+  display: flex;
+  width: 225px;
+  height: 225px;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: #b62dd8;
+}
+
+.playlist-header .content .playlist-image .liked-songs > i {
+  font-size: 100px;
+  color: white;
 }
 
 .playlist-header .content .playlist-info {

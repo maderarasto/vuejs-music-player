@@ -24,7 +24,7 @@ const router = new VueRouter({
     {
       path: '/collection/tracks',
       name: 'LikedSongs',
-      component: () => import('@/components/containers/LikedSongs')
+      component: () => import('@/components/playlist/Playlist')
     },
     {
       path: '/playlists/:id',

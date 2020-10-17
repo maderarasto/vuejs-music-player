@@ -1,6 +1,6 @@
 <template>
   <div class="playlist">
-    <PlaylistHeader :playlist="playlist" />
+    <PlaylistHeader :playlist="playlist" :liked-songs="likedSongs" />
     <div class="playlist-body">
       <PlaylistNav />
 
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       playlist: null,
+      likedSongs: false,
       selectedItemId: null
     }
   },
@@ -57,8 +58,13 @@ export default {
   },
 
   created() {
-    const playlistId = this.$route.params.id;
-    this.$spotify.getPlaylist(playlistId).then(playlist => this.playlist = playlist);
+    if (this.$route.name.includes('Playlist')) {
+      const playlistId = this.$route.params.id;
+      this.$store.dispatch('loadPlaylist', playlistId).then(playlist => this.playlist = playlist);
+    } else {
+      this.playlist = this.$store.getters.savedTracks;
+      this.likedSongs = true;
+    }
   }
 }
 </script>

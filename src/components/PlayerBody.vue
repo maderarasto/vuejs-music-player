@@ -41,8 +41,6 @@ export default {
         y: transform[1],
         z: transform[2]
       });
-
-      console.log(this.scrollPosition);
     }
   }
 }

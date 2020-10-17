@@ -1,9 +1,8 @@
-//const redirectURI = 'http://localhost:8080';
-const redirectURI = 'https://web-application-clones.gitlab.io/vuejs-spotify-clone';
+const redirectURI = 'http://localhost:8080';
+//const redirectURI = 'https://web-application-clones.gitlab.io/vuejs-spotify-clone';
 const clientID = 'f3017ca61c164cffbaccf73cfdc44bf1';
 
 const scopes = [
-  'user-top-read',
   'user-library-read',
   'user-read-recently-played',
   'user-read-currently-playing',
@@ -18,7 +17,7 @@ const utils = {
     let authorizeURI = `${this.authorizeURI}?client_id=${clientID}&`;
 
     authorizeURI += `redirect_uri=${redirectURI}&`;
-    authorizeURI += `scopes=${scopes.join('%20')}&`
+    authorizeURI += `scope=${scopes.join('%20')}&`
     authorizeURI += `response_type=token&show_dialog=true`;
 
     return authorizeURI;
