@@ -1,5 +1,5 @@
-const redirectURI = 'http://localhost:8080';
-//const redirectURI = 'https://web-application-clones.gitlab.io/vuejs-spotify-clone';
+//const redirectURI = 'http://localhost:8080';
+const redirectURI = 'https://web-application-clones.gitlab.io/vuejs-spotify-clone';
 const clientID = 'f3017ca61c164cffbaccf73cfdc44bf1';
 
 const scopes = [
