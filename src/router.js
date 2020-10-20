@@ -30,6 +30,11 @@ const router = new VueRouter({
       path: '/playlists/:id',
       name: 'Playlist',
       component: () => import('@/components/playlist/Playlist')
+    },
+    {
+      path: '/artists/:id',
+      name: 'Artist',
+      component: () => import('@/components/containers/Artist')
     }
   ]
 });

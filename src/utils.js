@@ -79,6 +79,41 @@ const utils = {
     time.minutes = time.minutes % 60;
 
     return time;
+  },
+
+  getResource(spotifyAPI, resourceType, resourceId) {
+    return new Promise((resolve, reject) => {
+        if (resourceType === 'artist') {
+          spotifyAPI.getArtist(resourceId)
+              .then(artist => this.resolveResource(resolve, artist))
+              .catch(error => reject(error));
+        } else if (resourceType === 'playlist') {
+          spotifyAPI.getPlaylist(resourceId)
+              .then(playlist => this.resolveResource(resolve, playlist))
+              .catch(error => reject(error));
+        } else reject('Resource not found');
+    });
+  },
+
+  resolveResource(resolve, resource) {
+    let description = '';
+    let routeName = '';
+
+    if (resource.type === 'artist') {
+      description = 'Artist';
+      routeName = 'Artist';
+    } else if (resource.type === 'playlist') {
+      description = resource.owner.id !== 'spotify' ? `By ${resource.owner.display_name}` : resource.description;
+      routeName = 'Playlist'
+    }
+
+    resolve({
+      id: resource.id,
+      name: resource.name,
+      url: { name: routeName, params: { id: resource.id }},
+      image: resource.images ? resource.images[0].url : '',
+      description: description
+    });
   }
 };
 

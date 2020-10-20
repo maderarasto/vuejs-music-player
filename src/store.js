@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
 import SpotifyAPI from "spotify-web-api-js";
+import Utils from '@/utils';
 
 Vue.use(Vuex);
 
@@ -11,6 +13,7 @@ const store = new Vuex.Store({
     playing: false,
     playedTrack: null,
     savedTracks: null,
+    recentlyPlayedGroups: [],
     playlists: [],
 
     scrollPosition: {
@@ -37,6 +40,10 @@ const store = new Vuex.Store({
       return state.savedTracks;
     },
 
+    recentlyPlayedGroups(state) {
+      return state.recentlyPlayedGroups;
+    },
+
     playlists(state) {
       return state.playlists;
     },
@@ -61,6 +68,14 @@ const store = new Vuex.Store({
 
     setSavedTracks(state, savedTracks) {
       state.savedTracks = savedTracks;
+    },
+
+    addRecentlyPlayedGroup(state, group) {
+      state.recentlyPlayedGroups.push(group);
+    },
+
+    clearRecentlyPlayedGroup(state) {
+      state.recentlyPlayedGroups = [];
     },
 
     setPlaylists(state, playlists) {
@@ -98,7 +113,6 @@ const store = new Vuex.Store({
         const savedTracks = { tracks: data, name: 'Liked Songs' };
         savedTracks.owner = context.getters.user;
 
-
         context.commit('setSavedTracks', savedTracks);
       });
     },
@@ -115,6 +129,27 @@ const store = new Vuex.Store({
 
         commit('setPlayedTrack', track);
       })
+    },
+
+    loadRecentlyPlayedGroups({commit}) {
+      spotifyAPI.getMyRecentlyPlayedTracks({ limit: 50 }).then(data => {
+        const distinctGroupIds = [];
+
+        data.items.filter(track => track.context).forEach(track => {
+          const context = track.context.uri.split(':');
+          const contextType = context[1];
+          const contextId = context[2];
+
+          if (!distinctGroupIds.includes(contextId))
+            distinctGroupIds.push(contextId);
+          else
+            return;
+
+          Utils.getResource(spotifyAPI, contextType, contextId)
+              .then(group => commit('addRecentlyPlayedGroup', group))
+              .catch(error => console.error(error));
+        });
+      });
     },
 
     loadPlaylist(_, playlistId) {
