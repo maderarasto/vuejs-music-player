@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="group.url" class="group-link">
+  <router-link :to="group.route" class="group-link">
     <img class="group-image" :src="group.image" />
-    <h3>{{ group.name }}</h3>
+    <h4>{{ group.name }}</h4>
     <p>{{ group.description }}</p>
   </router-link>
 </template>
@@ -12,7 +12,7 @@ export default {
 
   props: {
     group: Object
-  },
+  }
 }
 </script>
 
@@ -21,6 +21,9 @@ export default {
   width: 200px;
   height: 280px;
   padding: 20px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   box-sizing: border-box;
   border-radius: 5px;
@@ -40,7 +43,7 @@ export default {
   border-radius: 2px;
 }
 
-.group-link > h3 {
+.group-link > h4 {
   margin: 10px 0 0;
   text-align: left;
   text-decoration: none;
@@ -50,7 +53,7 @@ export default {
 .group-link > p {
   text-align: left;
   text-decoration: none;
-  font-size: 11pt;
+  font-size: 10pt;
   color: #8d8d8d;
 }
 

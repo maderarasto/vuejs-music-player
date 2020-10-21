@@ -33,7 +33,6 @@ export default {
       this.$store.dispatch('loadUser');
       this.$store.dispatch('loadSavedTracks');
       this.$store.dispatch('loadUserPlaylists');
-      this.$store.dispatch('loadRecentlyPlayedGroups');
       this.$store.dispatch('loadCurrentPlayingTrack');
 
       this.$router.push({ name: 'Home' });
