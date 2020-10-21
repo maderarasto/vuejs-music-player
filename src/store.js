@@ -14,6 +14,8 @@ const store = new Vuex.Store({
     playedTrack: null,
     savedTracks: null,
     recentlyPlayedGroups: [],
+    recommendedRockGroups: [],
+    recommendedPopGroups: [],
     playlists: [],
 
     scrollPosition: {
@@ -42,6 +44,14 @@ const store = new Vuex.Store({
 
     recentlyPlayedGroups(state) {
       return state.recentlyPlayedGroups;
+    },
+
+    recommendedRockGroups(state) {
+      return state.recommendedRockGroups;
+    },
+
+    recommendedPopGroups(state) {
+      return state.recommendedPopGroups;
     },
 
     playlists(state) {
@@ -76,6 +86,18 @@ const store = new Vuex.Store({
 
     clearRecentlyPlayedGroup(state) {
       state.recentlyPlayedGroups = [];
+    },
+
+    setRecommendedRockGroups(state, rockGroups) {
+      state.recommendedRockGroups = [];
+
+      rockGroups.forEach(group => state.recommendedRockGroups.push(group));
+    },
+
+    setRecommendedPopGroups(state, popGroups) {
+      state.recommendedPopGroups = [];
+
+      popGroups.forEach(group => state.recommendedPopGroups.push(group));
     },
 
     setPlaylists(state, playlists) {
@@ -132,6 +154,8 @@ const store = new Vuex.Store({
     },
 
     loadRecentlyPlayedGroups({commit}) {
+      commit('clearRecentlyPlayedGroup');
+
       spotifyAPI.getMyRecentlyPlayedTracks({ limit: 50 }).then(data => {
         const distinctGroupIds = [];
 
@@ -150,6 +174,40 @@ const store = new Vuex.Store({
               .catch(error => console.error(error));
         });
       });
+    },
+
+    loadRecommendedRockGroups({commit}, limit) {
+      spotifyAPI.getCategoryPlaylists('rock', { limit: limit }).then(data => {
+        const rockGroups = [];
+
+        data.playlists.items.forEach(playlist => rockGroups.push({
+          id: playlist.id,
+          name: playlist.name,
+          route: { name: 'Playlist', params: { id: playlist.id }},
+          description: playlist.description,
+          image: playlist.images ? playlist.images[0].url : ''
+        }));
+
+        commit('setRecommendedRockGroups', rockGroups);
+      });
+
+    },
+
+    loadRecommendedPopGroups({commit}, limit) {
+      spotifyAPI.getCategoryPlaylists('pop', { limit: limit }).then(data => {
+        const popGroups = [];
+
+        data.playlists.items.forEach(playlist => popGroups.push({
+          id: playlist.id,
+          name: playlist.name,
+          route: { name: 'Playlist', params: { id: playlist.id }},
+          description: playlist.description,
+          image: playlist.images ? playlist.images[0].url : ''
+        }));
+
+        commit('setRecommendedPopGroups', popGroups);
+      });
+
     },
 
     loadPlaylist(_, playlistId) {

@@ -3,9 +3,23 @@
     <h2>Recently Played</h2>
     <div class="flex-row">
       <GroupLink
-        v-for="group in recentlyPlayedGroup"
+        v-for="group in recentlyPlayedGroups"
         :key="group.id"
         :group="group" />
+    </div>
+    <h2>Rock</h2>
+    <div class="flex-row">
+      <GroupLink
+        v-for="group in recommendedRockGroups"
+        :key="group.id"
+        :group="group" />
+    </div>
+    <h2>Pop</h2>
+    <div class="flex-row">
+      <GroupLink
+          v-for="group in recommendedPopGroups"
+          :key="group.id"
+          :group="group" />
     </div>
   </div>
 </template>
@@ -20,9 +34,23 @@ export default {
   },
 
   computed: {
-    recentlyPlayedGroup() {
+    recentlyPlayedGroups() {
       return this.$store.getters.recentlyPlayedGroups;
+    },
+
+    recommendedRockGroups() {
+      return this.$store.getters.recommendedRockGroups;
+    },
+
+    recommendedPopGroups() {
+      return this.$store.getters.recommendedPopGroups;
     }
+  },
+
+  created() {
+    this.$store.dispatch('loadRecentlyPlayedGroups');
+    this.$store.dispatch('loadRecommendedRockGroups', 7);
+    this.$store.dispatch('loadRecommendedPopGroups', 7);
   }
 }
 </script>
@@ -30,7 +58,7 @@ export default {
 <style>
 .dashboard {
   display: flex;
-  margin-top: 50px;
+  margin: 50px 0 30px;
   padding: 0 30px;
 
   flex-direction: column;

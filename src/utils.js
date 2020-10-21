@@ -110,7 +110,7 @@ const utils = {
     resolve({
       id: resource.id,
       name: resource.name,
-      url: { name: routeName, params: { id: resource.id }},
+      route: { name: routeName, params: { id: resource.id }},
       image: resource.images ? resource.images[0].url : '',
       description: description
     });
