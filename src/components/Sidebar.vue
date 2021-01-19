@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import IconLink from '@/components/IconLink';
-import TextLink from '@/components/TextLink';
+import IconLink from '@/components/links/IconLink';
+import TextLink from '@/components/links/TextLink';
 
 export default {
   name: 'Sidebar',

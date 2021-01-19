@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div ref="dashboard" class="dashboard">
     <h2>Recently Played</h2>
     <div class="flex-row">
       <GroupLink
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import GroupLink from "@/components/GroupLink";
+import GroupLink from "@/components/links/GroupLink";
 
 export default {
   name: 'Dashboard',
@@ -33,17 +33,31 @@ export default {
     GroupLink,
   },
 
+  data() {
+      return {
+        cardsInRow: 0,
+      }
+  },
+
   computed: {
     recentlyPlayedGroups() {
-      return this.$store.getters.recentlyPlayedGroups;
+      return this.$store.getters.recentlyPlayedGroups.slice(0, this.cardsInRow);
     },
 
     recommendedRockGroups() {
-      return this.$store.getters.recommendedRockGroups;
+      return this.$store.getters.recommendedRockGroups.slice(0, this.cardsInRow);
     },
 
     recommendedPopGroups() {
-      return this.$store.getters.recommendedPopGroups;
+      return this.$store.getters.recommendedPopGroups.slice(0, this.cardsInRow);
+    }
+  },
+
+  methods: {
+    updateCardCount() {
+      if (this.$refs.dashboard) {
+        this.cardsInRow = Math.floor(this.$refs.dashboard.scrollWidth / 200);
+      }
     }
   },
 
@@ -51,6 +65,12 @@ export default {
     this.$store.dispatch('loadRecentlyPlayedGroups');
     this.$store.dispatch('loadRecommendedRockGroups', 7);
     this.$store.dispatch('loadRecommendedPopGroups', 7);
+  },
+
+  mounted() {
+    this.updateCardCount();
+
+    this.$nextTick(window.addEventListener('resize', this.updateCardCount));
   }
 }
 </script>

@@ -20,7 +20,7 @@ export default {
 .group-link {
   width: 200px;
   height: 280px;
-  padding: 20px;
+  padding: 15px;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,8 +51,10 @@ export default {
 }
 
 .group-link > p {
+  height: 50px;
   text-align: left;
   text-decoration: none;
+  overflow: hidden;
   font-size: 10pt;
   color: #8d8d8d;
 }
