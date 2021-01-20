@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resultCount > 0" class="search">
+  <div v-if="resultCount > 0" ref="search" class="search">
     <div class="top-results">
 
       <div class="top-playlist">
@@ -17,8 +17,11 @@
         </div>
       </div>
     </div>
-    <div class="artists">
+    <div v-if="artists.length > 0" class="artist-row">
       <h2>Artists</h2>
+      <div class="artists">
+        <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
+      </div>
     </div>
     <div class="albums">
 
@@ -31,11 +34,19 @@
 
 <script>
 import Track from "@/components/Track";
+import ResultCard from "@/components/cards/ResultCard";
 
 export default {
   name: "Search",
   components: {
+    ResultCard,
     Track
+  },
+
+  data() {
+    return {
+      cardsInRow: 8
+    }
   },
 
   computed: {
@@ -53,11 +64,27 @@ export default {
 
     tracks() {
       return this.results.tracks.slice(0, 4);
+    },
+
+    artists() {
+      return this.results.artists.slice(0, this.cardsInRow);
+    }
+  },
+
+  methods: {
+    updateCardCount() {
+      if (this.$refs.search) {
+        this.cardsInRow = Math.round((this.$refs.search.clientWidth - 25) / 205);
+      }
     }
   },
 
   created() {
     this.$store.dispatch('search', this.$route.params.query);
+  },
+
+  mounted() {
+    this.$nextTick(window.addEventListener('resize', this.updateCardCount));
   }
 }
 </script>
@@ -66,6 +93,7 @@ export default {
 .search {
   margin-top: 80px;
   text-align: left;
+  margin-bottom: 15px;
 }
 
 .search .top-results {
@@ -136,13 +164,25 @@ export default {
   flex: 1;
 }
 
-.search .artists {
+.search .artist-row {
   margin-top: 30px;
 }
 
-.artists h2 {
+.artist-row h2 {
   margin-bottom: 15px;
   font-weight: bolder;
   color: white;
+}
+
+.artist-row .artists {
+  display: flex;
+}
+
+.artists .result-card {
+  margin-right: 25px;
+}
+
+.artists .result-card:last-child {
+  margin-right: 0;
 }
 </style>

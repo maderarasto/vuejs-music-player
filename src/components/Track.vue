@@ -92,6 +92,7 @@ export default {
 }
 
 .track .track-length {
+  font-size: 11pt;
   color: gray;
 }
 </style>

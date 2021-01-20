@@ -69,8 +69,10 @@ export default {
     },
 
     onResize() {
-      this.movedTopGenres = 0;
-      this.topGenresEnd = this.$refs.topGenres.scrollWidth <= this.$refs.topGenres.clientWidth;
+      if (this.$refs.topGenres) {
+        this.movedTopGenres = 0;
+        this.topGenresEnd = this.$refs.topGenres.scrollWidth <= this.$refs.topGenres.clientWidth;
+      }
     }
   },
 
