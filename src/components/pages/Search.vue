@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div v-if="resultCount > 0" class="search">
     <div class="top-results">
 
       <div class="top-playlist">
@@ -41,6 +41,10 @@ export default {
   computed: {
     results() {
       return this.$store.getters['searchResults'];
+    },
+
+    resultCount() {
+        return [...this.results.albums, ...this.results.artists, ...this.results.playlists, ...this.results.tracks].length;
     },
 
     topPlaylist() {
