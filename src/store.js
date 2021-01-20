@@ -18,6 +18,7 @@ const store = new Vuex.Store({
     recommendedRockGroups: [],
     recommendedPopGroups: [],
     playlists: [],
+    searchResults: { albums: [], artists: [], playlists: [], tracks: []},
 
     scrollPosition: {
       x: 0,
@@ -61,6 +62,10 @@ const store = new Vuex.Store({
 
     categories(state) {
       return state.categories;
+    },
+
+    searchResults(state) {
+      return state.searchResults
     },
 
     scrollPosition(state) {
@@ -119,6 +124,50 @@ const store = new Vuex.Store({
         name: category.name,
         icon: category.icons.length > 0 ? category.icons[0].url : ''
       }));
+    },
+
+    setSearchResults(state, searchResults) {
+      state.searchResults.albums = [];
+      state.searchResults.artists = [];
+      state.searchResults.playlists = [];
+      state.searchResults.tracks = [];
+
+      if (!searchResults) return;
+
+      searchResults.albums.items.forEach(album =>
+        state.searchResults.albums.push({
+          id: album.id,
+          name: album.name,
+          artists: album.artists,
+          images: album.images
+      }));
+
+      searchResults.artists.items.forEach(artist =>
+        state.searchResults.artists.push({
+          id: artist.id,
+          name: artist.name,
+          images: artist.images
+        })
+      );
+
+      searchResults.playlists.items.forEach(playlist =>
+          state.searchResults.playlists.push({
+            id: playlist.id,
+            name: playlist.name,
+            owner: playlist.owner,
+            images: playlist.images
+          })
+      );
+
+      searchResults.tracks.items.forEach(track =>
+          state.searchResults.tracks.push({
+            id: track.id,
+            name: track.name,
+            artists: track.artists,
+            album: track.album,
+            duration: track.duration_ms
+          })
+      );
     },
 
     setScrollPosition(state, position) {
@@ -237,7 +286,15 @@ const store = new Vuex.Store({
             .then(playlist => resolve(playlist))
             .catch(error => reject(error));
       })
-    }
+    },
+
+    search({commit}, query) {
+      spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
+          .then(data => {
+            console.log(data);
+            commit('setSearchResults', data);
+          });
+    },
   }
 });
 

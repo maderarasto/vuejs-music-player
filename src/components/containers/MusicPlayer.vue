@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/components/containers/Sidebar';
 import PlayerBody from '@/components/player/PlayerBody';
 import PlayerBar from '@/components/player/PlayerBar';
 

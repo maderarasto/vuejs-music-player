@@ -9,22 +9,22 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'Home',
-      component: () => import ('@/components/containers/Dashboard')
+      component: () => import ('@/components/pages/Dashboard')
     },
     {
       path: '/search',
-      name: 'Search',
-      component: () => import('@/components/containers/Browse')
+      name: 'Browse',
+      component: () => import('@/components/pages/Browse')
     },
     {
       path: '/search/:query',
       name: 'Search',
-      component: () => import('@/components/containers/Search')
+      component: () => import('@/components/pages/Search')
     },
     {
       path: '/collection',
       name: 'Library',
-      component: () => import('@/components/containers/Collection')
+      component: () => import('@/components/pages/Collection')
     },
     {
       path: '/collection/tracks',
@@ -39,7 +39,7 @@ const router = new VueRouter({
     {
       path: '/artists/:id',
       name: 'Artist',
-      component: () => import('@/components/containers/Artist')
+      component: () => import('@/components/pages/Artist')
     }
   ]
 });

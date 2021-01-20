@@ -1,19 +1,30 @@
 <template>
-  <div v-if="shouldShow" class="search-input">
+  <div class="search-input">
     <i class="fas fa-search"></i>
-    <input ref="search" type="text" placeholder="Search for Songs, Artists or Genres" autofocus />
+    <input
+        ref="search"
+        type="text"
+        v-model="text"
+        placeholder="Search for Songs, Artists or Genres"
+        @input="onInput" autofocus />
   </div>
 </template>
 
 <script>
 export default {
-    name: "SearchInput",
+  name: "SearchInput",
 
-    computed: {
-      shouldShow() {
-        return this.$route.name === 'Search';
-      }
-    },
+  data() {
+    return {
+      text: ''
+    }
+  },
+
+  methods: {
+    onInput() {
+      this.$emit('input', this.text);
+    }
+  },
 
   mounted() {
       this.$refs.search.focus();

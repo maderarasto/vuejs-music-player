@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="browse">
     <FloatButton v-if="shouldShowLeftArrow" class="left-arrow" @click="onArrowClick('left')">
       <i class="fas fa-angle-left fa-2x"></i>
     </FloatButton>
@@ -87,13 +87,13 @@ export default {
 </script>
 
 <style>
-.search {
+.browse {
   position: relative;
   margin-top: 80px;
   text-align: left;
 }
 
-.search .float-button {
+.browse .float-button {
   position: absolute;
   top: 125px;
   z-index: 2;
@@ -107,7 +107,7 @@ export default {
   right: -25px;
 }
 
-.search .genre-row {
+.browse .genre-row {
   position: relative;
   height: 315px;
   margin: 15px 0;

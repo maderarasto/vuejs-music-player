@@ -52,7 +52,7 @@ export default {
     },
 
     searchRoute() {
-      return { name: 'Search'}
+      return { name: 'Browse'}
     },
 
     libraryRoute() {

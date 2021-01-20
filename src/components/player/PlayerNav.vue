@@ -1,7 +1,7 @@
 <template>
   <nav :class="navClasses">
     <div class="nav-left">
-      <SearchInput />
+      <SearchInput v-if="shouldShow" @input="onSearchInput"/>
     </div>
     <div class="nav-right">
       <UserDropdown />
@@ -25,8 +25,23 @@ export default {
   },
 
   computed: {
+    shouldShow() {
+      return ['Browse', 'Search'].includes(this.$route.name);
+    },
+
     navClasses() {
       return ['player-nav', this.showOverlay ? 'nav-overlay' : ''];
+    }
+  },
+
+  methods: {
+    onSearchInput(value) {
+      this.$store.commit('setSearchResults', null);
+
+      if (value === '')
+        this.$router.push({ name: 'Browse' });
+      else
+        this.$router.push({ name: 'Search', params: { query: value} });
     }
   }
 }

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Login from '@/components/Login';
-import SpotifyPlayer from '@/components/MusicPlayer';
+import Login from '@/components/containers/Login';
+import SpotifyPlayer from '@/components/containers/MusicPlayer';
 
 export default {
   name: 'App',
