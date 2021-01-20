@@ -13,6 +13,7 @@ const store = new Vuex.Store({
     playing: false,
     playedTrack: null,
     savedTracks: null,
+    categories: [],
     recentlyPlayedGroups: [],
     recommendedRockGroups: [],
     recommendedPopGroups: [],
@@ -56,6 +57,10 @@ const store = new Vuex.Store({
 
     playlists(state) {
       return state.playlists;
+    },
+
+    categories(state) {
+      return state.categories;
     },
 
     scrollPosition(state) {
@@ -104,6 +109,16 @@ const store = new Vuex.Store({
       state.playlists = [];
 
       playlists.forEach(playlist => state.playlists.push(playlist));
+    },
+
+    setCategories(state, categories) {
+      state.categories = [];
+
+      categories.forEach(category => state.categories.push({
+        id: category.id,
+        name: category.name,
+        icon: category.icons.length > 0 ? category.icons[0].url : ''
+      }));
     },
 
     setScrollPosition(state, position) {
@@ -174,6 +189,12 @@ const store = new Vuex.Store({
               .catch(error => console.error(error));
         });
       });
+    },
+
+    loadCategories({commit}) {
+      spotifyAPI.getCategories({ locale: 'en', limit: 40 }).then(data => {
+        commit('setCategories', data.categories.items);
+      })
     },
 
     loadRecommendedRockGroups({commit}, limit) {

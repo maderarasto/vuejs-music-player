@@ -17,7 +17,7 @@
 
 <script>
 import Slider from '@/components/Slider';
-import PlayerAction from '@/components/PlayerAction';
+import PlayerAction from '@/components/player/PlayerAction';
 
 export default {
   name: 'PlayerControls',

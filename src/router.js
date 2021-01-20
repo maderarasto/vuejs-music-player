@@ -14,6 +14,11 @@ const router = new VueRouter({
     {
       path: '/search',
       name: 'Search',
+      component: () => import('@/components/containers/Browse')
+    },
+    {
+      path: '/search/:query',
+      name: 'Search',
       component: () => import('@/components/containers/Search')
     },
     {

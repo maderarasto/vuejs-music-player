@@ -80,7 +80,6 @@ export default {
   display: flex;
   margin: 50px 0 30px;
   padding: 0 30px;
-
   flex-direction: column;
   justify-content: flex-start;
 }

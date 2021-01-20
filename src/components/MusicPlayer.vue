@@ -1,5 +1,5 @@
 <template>
-  <div class="spotify-player">
+  <div class="music-player">
     <div class="container">
       <Sidebar />
       <PlayerBody />
@@ -11,8 +11,8 @@
 
 <script>
 import Sidebar from '@/components/Sidebar';
-import PlayerBody from '@/components/PlayerBody';
-import PlayerBar from '@/components/PlayerBar';
+import PlayerBody from '@/components/player/PlayerBody';
+import PlayerBar from '@/components/player/PlayerBar';
 
 export default {
   name: 'SpotifyPlayer',
@@ -20,12 +20,16 @@ export default {
     Sidebar,
     PlayerBody,
     PlayerBar
+  },
+
+  created() {
+    this.$store.dispatch('loadCategories');
   }
 }
 </script>
 
 <style>
-.spotify-player {
+.music-player {
   display: flex;
   width: 100%;
   height: 100%;

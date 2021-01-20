@@ -11,7 +11,7 @@
 
 <script>
 import TrackInfo from '@/components/TrackInfo';
-import PlayerControls from '@/components/PlayerControls';
+import PlayerControls from '@/components/player/PlayerControls';
 import Slider from '@/components/Slider';
 
 export default {

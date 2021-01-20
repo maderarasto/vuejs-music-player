@@ -7,7 +7,7 @@
 
 <script>
 import Login from '@/components/Login';
-import SpotifyPlayer from '@/components/SpotifyPlayer';
+import SpotifyPlayer from '@/components/MusicPlayer';
 
 export default {
   name: 'App',

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import PlayerNav from '@/components/PlayerNav';
+import PlayerNav from '@/components/player/PlayerNav';
 
 export default {
   name: 'PlayerBody',
@@ -68,9 +68,10 @@ export default {
 .scroll-container .player-content {
   width: 100%;
   height: 100%;
-  margin-right: 20px;
+  padding-left: 40px;
+  padding-right: 30px;
 
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .simplebar-track.simplebar-vertical {

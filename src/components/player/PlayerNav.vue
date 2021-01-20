@@ -1,7 +1,7 @@
 <template>
   <nav :class="navClasses">
     <div class="nav-left">
-
+      <SearchInput />
     </div>
     <div class="nav-right">
       <UserDropdown />
@@ -10,11 +10,13 @@
 </template>
 
 <script>
+import SearchInput from "@/components/SearchInput";
 import UserDropdown from '@/components/UserDropdown';
 
 export default {
   name: 'PlayerNav',
   components: {
+    SearchInput,
     UserDropdown
   },
 
