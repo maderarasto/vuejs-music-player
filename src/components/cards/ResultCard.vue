@@ -1,9 +1,12 @@
 <template>
   <div class="result-card">
-    <img v-if="image" :src="image.url" alt="image of the result" />
+    <img v-if="image" :class="{circle: type === 'artist'}" :src="image.url" alt="image of the result" />
+    <i v-else class="default fas fa-user-circle fa-9x"></i>
     <div class="result-details">
       <h4>{{ result.name }}</h4>
       <span v-if="type === 'artist'" class="result-type">Artist</span>
+      <span v-else-if="type === 'playlist'">{{ result.owner.name }}</span>
+      <span v-else class="album-artists" v-html="artists"></span>
     </div>
   </div>
 </template>
@@ -20,12 +23,20 @@ export default {
   computed: {
     image() {
       return this.result.images.length > 0 ? this.result.images[0] : null;
+    },
+
+    artists() {
+      const artistsStr = this.result.artists.reduce(
+          (result, artist) => result + `<a href="artists/${artist.id}">${artist.name}</a>, `
+          , '');
+
+      return artistsStr.substr(0, artistsStr.length - 2);
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .result-card {
   display: flex;
   width: 180px;
@@ -51,6 +62,14 @@ export default {
   border-radius: 15px;
 }
 
+.result-card img.circle {
+  border-radius: 50%;
+}
+
+.result-card .default {
+  color: gray;
+}
+
 .result-card .result-details {
   margin-top: 15px;
   align-self: flex-start;
@@ -63,5 +82,15 @@ export default {
 .result-details .result-type {
   font-size: 10pt;
   color: gray;
+}
+
+.result-details .album-artists a {
+  font-size: 10pt;
+  text-decoration: none;
+  color: gray;
+}
+
+.result-details .album-artists a:hover {
+  text-decoration: underline;
 }
 </style>

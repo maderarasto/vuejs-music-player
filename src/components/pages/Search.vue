@@ -17,17 +17,23 @@
         </div>
       </div>
     </div>
-    <div v-if="artists.length > 0" class="artist-row">
+    <div v-if="artists.length > 0" class="row artist-row">
       <h2>Artists</h2>
       <div class="artists">
         <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
       </div>
     </div>
-    <div class="albums">
-
+    <div class="row album-row">
+      <h2>Albums</h2>
+      <div class="albums">
+        <ResultCard v-for="album in albums" :key="album.id" type="album" :result="album" />
+      </div>
     </div>
-    <div class="playlists">
-
+    <div class="row playlist-row">
+      <h2>Playlists</h2>
+      <div class="playlists">
+        <ResultCard v-for="playlist in playlists" :key="playlist.id" type="playlist" :result="playlist" />
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +74,14 @@ export default {
 
     artists() {
       return this.results.artists.slice(0, this.cardsInRow);
+    },
+
+    albums() {
+      return this.results.albums.slice(0, this.cardsInRow);
+    },
+
+    playlists() {
+      return this.results.playlists.slice(0, this.cardsInRow);
     }
   },
 
@@ -164,25 +178,25 @@ export default {
   flex: 1;
 }
 
-.search .artist-row {
+.search .row {
   margin-top: 30px;
 }
 
-.artist-row h2 {
+.row h2 {
   margin-bottom: 15px;
   font-weight: bolder;
   color: white;
 }
 
-.artist-row .artists {
+.row .artists, .row .albums, .row .playlists {
   display: flex;
 }
 
-.artists .result-card {
+.row .result-card {
   margin-right: 25px;
 }
 
-.artists .result-card:last-child {
+.row .result-card:last-child {
   margin-right: 0;
 }
 </style>
