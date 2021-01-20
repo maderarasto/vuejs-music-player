@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div v-if="resultCount > 0" ref="search" class="search">
     <div class="top-results">
 
       <div class="top-playlist">
@@ -17,30 +17,51 @@
         </div>
       </div>
     </div>
-    <div class="artists">
+    <div v-if="artists.length > 0" class="row artist-row">
       <h2>Artists</h2>
+      <div class="artists">
+        <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
+      </div>
     </div>
-    <div class="albums">
-
+    <div class="row album-row">
+      <h2>Albums</h2>
+      <div class="albums">
+        <ResultCard v-for="album in albums" :key="album.id" type="album" :result="album" />
+      </div>
     </div>
-    <div class="playlists">
-
+    <div class="row playlist-row">
+      <h2>Playlists</h2>
+      <div class="playlists">
+        <ResultCard v-for="playlist in playlists" :key="playlist.id" type="playlist" :result="playlist" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Track from "@/components/Track";
+import ResultCard from "@/components/cards/ResultCard";
 
 export default {
   name: "Search",
   components: {
+    ResultCard,
     Track
+  },
+
+  data() {
+    return {
+      cardsInRow: 8
+    }
   },
 
   computed: {
     results() {
       return this.$store.getters['searchResults'];
+    },
+
+    resultCount() {
+        return [...this.results.albums, ...this.results.artists, ...this.results.playlists, ...this.results.tracks].length;
     },
 
     topPlaylist() {
@@ -49,11 +70,35 @@ export default {
 
     tracks() {
       return this.results.tracks.slice(0, 4);
+    },
+
+    artists() {
+      return this.results.artists.slice(0, this.cardsInRow);
+    },
+
+    albums() {
+      return this.results.albums.slice(0, this.cardsInRow);
+    },
+
+    playlists() {
+      return this.results.playlists.slice(0, this.cardsInRow);
+    }
+  },
+
+  methods: {
+    updateCardCount() {
+      if (this.$refs.search) {
+        this.cardsInRow = Math.round((this.$refs.search.clientWidth - 25) / 205);
+      }
     }
   },
 
   created() {
     this.$store.dispatch('search', this.$route.params.query);
+  },
+
+  mounted() {
+    this.$nextTick(window.addEventListener('resize', this.updateCardCount));
   }
 }
 </script>
@@ -62,6 +107,7 @@ export default {
 .search {
   margin-top: 80px;
   text-align: left;
+  margin-bottom: 15px;
 }
 
 .search .top-results {
@@ -132,13 +178,25 @@ export default {
   flex: 1;
 }
 
-.search .artists {
+.search .row {
   margin-top: 30px;
 }
 
-.artists h2 {
+.row h2 {
   margin-bottom: 15px;
   font-weight: bolder;
   color: white;
+}
+
+.row .artists, .row .albums, .row .playlists {
+  display: flex;
+}
+
+.row .result-card {
+  margin-right: 25px;
+}
+
+.row .result-card:last-child {
+  margin-right: 0;
 }
 </style>

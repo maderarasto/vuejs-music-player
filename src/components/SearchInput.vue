@@ -6,7 +6,7 @@
         type="text"
         v-model="text"
         placeholder="Search for Songs, Artists or Genres"
-        @input="onInput" autofocus />
+        @input="onInput" />
   </div>
 </template>
 
