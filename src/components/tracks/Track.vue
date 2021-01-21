@@ -1,13 +1,17 @@
 <template>
   <div class="track">
-    <div style="display: flex">
+    <div class="left-side">
       <img :src="albumImage.url" alt="album image of the track" />
       <span class="track-details">
         <span class="track-name">{{ track.name }}</span>
         <div class="track-artists" v-html="artists"></div>
       </span>
     </div>
-    <span class="track-length">{{ length }}</span>
+    <div class="right-side">
+      <i class="far fa-heart"></i>
+      <span class="track-length">{{ length }}</span>
+      <i class="fas fa-ellipsis-h"></i>
+    </div>
   </div>
 </template>
 
@@ -54,6 +58,7 @@ export default {
   padding: 0 10px;
   border-radius: 5px;
 
+  box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
 }
@@ -66,12 +71,16 @@ export default {
   color: white;
 }
 
-.track img {
+.track .left-side, .track .right-side {
+  display: flex;
+}
+
+.left-side  img {
   width: 40px;
   height: 40px;
 }
 
-.track .track-details {
+.left-side .track-details {
   display: flex;
   margin-left: 20px;
   flex-direction: column;
@@ -91,8 +100,27 @@ export default {
   text-decoration: underline;
 }
 
-.track .track-length {
-  font-size: 11pt;
+.right-side .track-length {
+  font-size: 10pt;
+  cursor: default;
   color: gray;
+}
+
+.right-side i {
+  margin: 0 10px 0 15px;
+  visibility: hidden;
+  color: gray;
+}
+
+.right-side i:hover {
+  color: white;
+}
+
+.track:hover .right-side .track-length {
+  color: white;
+}
+
+.track:hover .right-side i {
+  visibility: visible;
 }
 </style>

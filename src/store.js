@@ -19,6 +19,7 @@ const store = new Vuex.Store({
     recommendedPopGroups: [],
     playlists: [],
     searchResults: { albums: [], artists: [], playlists: [], tracks: []},
+    searchTracks: [],
 
     scrollPosition: {
       x: 0,
@@ -66,6 +67,10 @@ const store = new Vuex.Store({
 
     searchResults(state) {
       return state.searchResults
+    },
+
+    searchTracks(state) {
+      return state.searchTracks;
     },
 
     scrollPosition(state) {
@@ -170,6 +175,20 @@ const store = new Vuex.Store({
       );
     },
 
+    setSearchTracks(state, tracks) {
+      state.searchTracks = [];
+
+      tracks.items.forEach(track =>
+        state.searchTracks.push({
+          id: track.id,
+          name: track.name,
+          artists: track.artists,
+          album: track.album,
+          duration: track.duration_ms
+        })
+      );
+    },
+
     setScrollPosition(state, position) {
       state.scrollPosition = position;
     },
@@ -185,7 +204,6 @@ const store = new Vuex.Store({
 
   actions: {
     initToken(_, token) {
-      console.log(token);
       spotifyAPI.setAccessToken(token);
     },
 
@@ -291,10 +309,18 @@ const store = new Vuex.Store({
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
           .then(data => {
-            console.log(data);
             commit('setSearchResults', data);
-          });
+          })
+          .catch(error => console.error(error));
     },
+
+    searchTracks({commit}, query) {
+      spotifyAPI.search(query, ['track'], { limit: 50 })
+          .then(data => {
+            commit('setSearchTracks', data.tracks);
+          })
+          .catch(error => console.error(error));
+    }
   }
 });
 

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TrackInfo from '@/components/TrackInfo';
+import TrackInfo from '@/components/tracks/TrackInfo';
 import PlayerControls from '@/components/player/PlayerControls';
 import Slider from '@/components/Slider';
 
