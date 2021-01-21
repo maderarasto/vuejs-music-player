@@ -10,8 +10,11 @@
           <span class="badge">Playlist</span>
         </div>
       </div>
-      <div class="tracks">
-        <h2>Songs</h2>
+      <div class="section tracks">
+        <div class="header">
+          <h2>Songs</h2>
+          <router-link :to="getSearchRoute('track')" class="search-all">See All</router-link>
+        </div>
         <div class="song-list">
           <Track v-for="track in tracks" :key="track.id" :track="track" />
         </div>
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import Track from "@/components/Track";
+import Track from "@/components/tracks/Track";
 import ResultCard from "@/components/cards/ResultCard";
 
 export default {
@@ -86,7 +89,17 @@ export default {
   },
 
   methods: {
+    getSearchRoute(resourceType) {
+      const query = this.$route.params.query;
+      let routeName = 'Search';
+
+      if (resourceType === 'track') routeName += 'Tracks';
+
+      return { name: routeName, params: { query: query } };
+    },
+
     updateCardCount() {
+      console.log(this.$refs);
       if (this.$refs.search) {
         this.cardsInRow = Math.round((this.$refs.search.clientWidth - 25) / 205);
       }
@@ -98,7 +111,10 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(window.addEventListener('resize', this.updateCardCount));
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.updateCardCount)
+      this.updateCardCount();
+    });
   }
 }
 </script>
@@ -110,6 +126,25 @@ export default {
   margin-bottom: 15px;
 }
 
+.section .header {
+  display: flex;
+  padding-bottom: 15px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header .search-all {
+  font-size: 10pt;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: gray;
+}
+
+.header .search-all:hover {
+  text-decoration: underline;
+}
+
 .search .top-results {
   display: flex;
   width: 100%;
@@ -118,7 +153,6 @@ export default {
 }
 
 .top-results h2 {
-  margin-bottom: 15px;
   font-weight: bolder;
   color: white;
 }

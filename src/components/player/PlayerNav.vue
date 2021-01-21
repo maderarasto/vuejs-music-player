@@ -1,7 +1,7 @@
 <template>
   <nav :class="navClasses">
     <div class="nav-left">
-      <SearchInput v-if="shouldShow" @input="onSearchInput"/>
+      <SearchInput v-if="shouldSearchShow" @input="onSearchInput"/>
     </div>
     <div class="nav-right">
       <UserDropdown />
@@ -25,8 +25,14 @@ export default {
   },
 
   computed: {
-    shouldShow() {
-      return ['Browse', 'Search'].includes(this.$route.name);
+    shouldSearchShow() {
+      const routes = [
+        'Browse',
+        'Search',
+        'SearchTracks'
+      ];
+
+      return routes.includes(this.$route.name);
     },
 
     navClasses() {
