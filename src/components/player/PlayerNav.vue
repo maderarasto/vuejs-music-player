@@ -29,7 +29,9 @@ export default {
       const routes = [
         'Browse',
         'Search',
-        'SearchTracks'
+        'SearchTracks',
+        'SearchArtists',
+        'SearchPlaylists'
       ];
 
       return routes.includes(this.$route.name);

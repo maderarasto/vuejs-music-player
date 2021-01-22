@@ -2,8 +2,10 @@
   <div v-if="resultCount > 0" ref="search" class="search">
     <div class="top-results">
 
-      <div class="top-playlist">
-        <h2>Top result</h2>
+      <div class="section top-playlist">
+        <div class="header">
+          <h2>Top result</h2>
+        </div>
         <div class="playlist-card">
           <img v-if="topPlaylist" :src="topPlaylist.images[0].url" alt="top playlist image" />
           <h1 :title="topPlaylist.name">{{ topPlaylist.name }}</h1>
@@ -13,29 +15,52 @@
       <div class="section tracks">
         <div class="header">
           <h2>Songs</h2>
-          <router-link :to="getSearchRoute('track')" class="search-all">See All</router-link>
+          <router-link v-if="results.tracks.length >= 4" :to="getSearchRoute('track')" class="search-all">See All</router-link>
         </div>
         <div class="song-list">
           <Track v-for="track in tracks" :key="track.id" :track="track" />
         </div>
       </div>
     </div>
-    <div v-if="artists.length > 0" class="row artist-row">
-      <h2>Artists</h2>
+    <div v-if="artists.length > 0" class="section row artist-row">
+      <div class="header">
+        <h2>Artists</h2>
+        <router-link v-if="results.artists.length >= this.cardsInRow" :to="getSearchRoute('artist')" class="search-all">See All</router-link>
+      </div>
       <div class="artists">
-        <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
+        <ResultCard
+          v-for="artist in artists"
+          :key="artist.id" type="artist"
+          :result="artist"
+          @click="onCardClick('artist', artist)" />
       </div>
     </div>
-    <div class="row album-row">
-      <h2>Albums</h2>
+    <div class="section row album-row">
+      <div class="header">
+        <h2>Albums</h2>
+        <router-link v-if="results.albums.length >= this.cardsInRow" :to="getSearchRoute('album')" class="search-all">See All</router-link>
+      </div>
       <div class="albums">
-        <ResultCard v-for="album in albums" :key="album.id" type="album" :result="album" />
+        <ResultCard
+          v-for="album in albums"
+          :key="album.id"
+          type="album"
+          :result="album"
+          @click="onCardClick('album', album)" />
       </div>
     </div>
-    <div class="row playlist-row">
-      <h2>Playlists</h2>
+    <div class="section row playlist-row">
+      <div class="header">
+        <h2>Playlists</h2>
+        <router-link v-if="results.playlists.length >= this.cardsInRow" :to="getSearchRoute('playlist')" class="search-all">See All</router-link>
+      </div>
       <div class="playlists">
-        <ResultCard v-for="playlist in playlists" :key="playlist.id" type="playlist" :result="playlist" />
+        <ResultCard
+          v-for="playlist in playlists"
+          :key="playlist.id"
+          type="playlist"
+          :result="playlist"
+          @click="onCardClick('playlist', playlist)" />
       </div>
     </div>
   </div>
@@ -94,6 +119,9 @@ export default {
       let routeName = 'Search';
 
       if (resourceType === 'track') routeName += 'Tracks';
+      if (resourceType === 'artist') routeName += 'Artists';
+      if (resourceType === 'album') routeName += 'Albums';
+      if (resourceType === 'playlist') routeName += 'Playlists';
 
       return { name: routeName, params: { query: query } };
     },
@@ -103,6 +131,16 @@ export default {
       if (this.$refs.search) {
         this.cardsInRow = Math.round((this.$refs.search.clientWidth - 25) / 205);
       }
+    },
+
+    onCardClick(type, result) {
+      let routeName = '';
+
+      if (type === 'artist') routeName = 'Artist';
+      if (type === 'album') routeName = 'Album';
+      if (type === 'playlist') routeName = 'Playlist';
+
+      this.$router.push({ name: routeName, params: { id: result.id } });
     }
   },
 
@@ -128,14 +166,14 @@ export default {
 
 .section .header {
   display: flex;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   justify-content: space-between;
   align-items: baseline;
 }
 
 .header .search-all {
   font-size: 10pt;
-  font-weight: bolder;
+  font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
   color: gray;

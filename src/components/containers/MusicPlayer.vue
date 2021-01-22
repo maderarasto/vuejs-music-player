@@ -15,7 +15,7 @@ import PlayerBody from '@/components/player/PlayerBody';
 import PlayerBar from '@/components/player/PlayerBar';
 
 export default {
-  name: 'SpotifyPlayer',
+  name: 'MusicPlayer',
   components: {
     Sidebar,
     PlayerBody,

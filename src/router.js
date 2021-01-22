@@ -27,6 +27,30 @@ const router = new VueRouter({
       component: () => import('@/pages/SearchTracks')
     },
     {
+      path: '/search/:query/artists',
+      name: 'SearchArtists',
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'artist'
+      }
+    },
+    {
+      path: '/search/:query/albums',
+      name: 'SearchAlbums',
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'album'
+      }
+    },
+    {
+      path: '/search/:query/playlists',
+      name: 'SearchPlaylists',
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'playlist'
+      }
+    },
+    {
       path: '/collection',
       name: 'Library',
       component: () => import('@/pages/Collection')
@@ -45,6 +69,11 @@ const router = new VueRouter({
       path: '/artists/:id',
       name: 'Artist',
       component: () => import('@/pages/Artist')
+    },
+    {
+      path: '/albums/:id',
+      name: 'Album',
+      component: () => import('@/pages/Album')
     }
   ]
 });

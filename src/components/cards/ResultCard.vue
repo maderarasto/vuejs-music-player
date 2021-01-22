@@ -1,5 +1,5 @@
 <template>
-  <div class="result-card">
+  <div class="result-card" @click="onClick">
     <img v-if="image" :class="{circle: type === 'artist'}" :src="image.url" alt="image of the result" />
     <i v-else class="default fas fa-user-circle fa-9x"></i>
     <div class="result-details">
@@ -32,6 +32,12 @@ export default {
 
       return artistsStr.substr(0, artistsStr.length - 2);
     }
+  },
+
+  methods: {
+    onClick(e) {
+      this.$emit('click', e);
+    }
   }
 }
 </script>
@@ -59,7 +65,7 @@ export default {
 .result-card img {
   width: 150px;
   height: 150px;
-  border-radius: 15px;
+  border-radius: 3px;
 }
 
 .result-card img.circle {
