@@ -2,8 +2,10 @@
   <div v-if="resultCount > 0" ref="search" class="search">
     <div class="top-results">
 
-      <div class="top-playlist">
-        <h2>Top result</h2>
+      <div class="section top-playlist">
+        <div class="header">
+          <h2>Top result</h2>
+        </div>
         <div class="playlist-card">
           <img v-if="topPlaylist" :src="topPlaylist.images[0].url" alt="top playlist image" />
           <h1 :title="topPlaylist.name">{{ topPlaylist.name }}</h1>
@@ -13,15 +15,18 @@
       <div class="section tracks">
         <div class="header">
           <h2>Songs</h2>
-          <router-link :to="getSearchRoute('track')" class="search-all">See All</router-link>
+          <router-link v-if="tracks.length >= 4" :to="getSearchRoute('track')" class="search-all">See All</router-link>
         </div>
         <div class="song-list">
-          <Track v-for="track in tracks" :key="track.id" :track="track" />
+          <Track v-for="track in firstTracks" :key="track.id" :track="track" />
         </div>
       </div>
     </div>
-    <div v-if="artists.length > 0" class="row artist-row">
-      <h2>Artists</h2>
+    <div v-if="artists.length > 0" class="section row artist-row">
+      <div class="header">
+        <h2>Artists</h2>
+        <router-link v-if="artists.length >= 4" :to="getSearchRoute('artist')" class="search-all">See All</router-link>
+      </div>
       <div class="artists">
         <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
       </div>
@@ -72,7 +77,11 @@ export default {
     },
 
     tracks() {
-      return this.results.tracks.slice(0, 4);
+      return this.results.tracks;
+    },
+
+    firstTracks() {
+      return this.tracks.slice(0, 4);
     },
 
     artists() {
@@ -94,6 +103,7 @@ export default {
       let routeName = 'Search';
 
       if (resourceType === 'track') routeName += 'Tracks';
+      if (resourceType === 'artist') routeName += 'Artists';
 
       return { name: routeName, params: { query: query } };
     },
@@ -128,14 +138,14 @@ export default {
 
 .section .header {
   display: flex;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   justify-content: space-between;
   align-items: baseline;
 }
 
 .header .search-all {
   font-size: 10pt;
-  font-weight: bolder;
+  font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
   color: gray;

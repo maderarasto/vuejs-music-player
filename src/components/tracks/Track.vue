@@ -87,6 +87,7 @@ export default {
 }
 
 .track-details .track-name {
+  cursor: default;
   color: white;
 }
 
