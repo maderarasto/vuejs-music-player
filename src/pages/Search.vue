@@ -28,7 +28,11 @@
         <router-link v-if="artists.length >= 4" :to="getSearchRoute('artist')" class="search-all">See All</router-link>
       </div>
       <div class="artists">
-        <ResultCard v-for="artist in artists" :key="artist.id" type="artist" :result="artist" />
+        <ResultCard
+          v-for="artist in artists"
+          :key="artist.id" type="artist"
+          :result="artist"
+          @click="onArtistCardClick(artist)" />
       </div>
     </div>
     <div class="row album-row">
@@ -113,6 +117,10 @@ export default {
       if (this.$refs.search) {
         this.cardsInRow = Math.round((this.$refs.search.clientWidth - 25) / 205);
       }
+    },
+
+    onArtistCardClick(artist) {
+      this.$router.push({ name: 'Artist', params: { id: artist.id } });
     }
   },
 
