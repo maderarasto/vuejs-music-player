@@ -29,7 +29,26 @@ const router = new VueRouter({
     {
       path: '/search/:query/artists',
       name: 'SearchArtists',
-      component: () => import('@/pages/SearchArtists')
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'artist'
+      }
+    },
+    {
+      path: '/search/:query/albums',
+      name: 'SearchAlbums',
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'album'
+      }
+    },
+    {
+      path: '/search/:query/playlists',
+      name: 'SearchPlaylists',
+      component: () => import('@/pages/SearchResults'),
+      props: {
+        type: 'playlist'
+      }
     },
     {
       path: '/collection',

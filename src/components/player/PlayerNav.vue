@@ -30,7 +30,8 @@ export default {
         'Browse',
         'Search',
         'SearchTracks',
-        'SearchArtists'
+        'SearchArtists',
+        'SearchPlaylists'
       ];
 
       return routes.includes(this.$route.name);

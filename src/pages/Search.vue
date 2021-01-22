@@ -15,36 +15,52 @@
       <div class="section tracks">
         <div class="header">
           <h2>Songs</h2>
-          <router-link v-if="tracks.length >= 4" :to="getSearchRoute('track')" class="search-all">See All</router-link>
+          <router-link v-if="results.tracks.length >= 4" :to="getSearchRoute('track')" class="search-all">See All</router-link>
         </div>
         <div class="song-list">
-          <Track v-for="track in firstTracks" :key="track.id" :track="track" />
+          <Track v-for="track in tracks" :key="track.id" :track="track" />
         </div>
       </div>
     </div>
     <div v-if="artists.length > 0" class="section row artist-row">
       <div class="header">
         <h2>Artists</h2>
-        <router-link v-if="artists.length >= 4" :to="getSearchRoute('artist')" class="search-all">See All</router-link>
+        <router-link v-if="results.artists.length >= this.cardsInRow" :to="getSearchRoute('artist')" class="search-all">See All</router-link>
       </div>
       <div class="artists">
         <ResultCard
           v-for="artist in artists"
           :key="artist.id" type="artist"
           :result="artist"
-          @click="onArtistCardClick(artist)" />
+          @click="onCardClick('artist', artist)" />
       </div>
     </div>
-    <div class="row album-row">
-      <h2>Albums</h2>
+    <div class="section row album-row">
+      <div class="header">
+        <h2>Albums</h2>
+        <router-link v-if="results.albums.length >= this.cardsInRow" :to="getSearchRoute('album')" class="search-all">See All</router-link>
+      </div>
       <div class="albums">
-        <ResultCard v-for="album in albums" :key="album.id" type="album" :result="album" />
+        <ResultCard
+          v-for="album in albums"
+          :key="album.id"
+          type="album"
+          :result="album"
+          @click="onCardClick('album', album)" />
       </div>
     </div>
-    <div class="row playlist-row">
-      <h2>Playlists</h2>
+    <div class="section row playlist-row">
+      <div class="header">
+        <h2>Playlists</h2>
+        <router-link v-if="results.playlists.length >= this.cardsInRow" :to="getSearchRoute('playlist')" class="search-all">See All</router-link>
+      </div>
       <div class="playlists">
-        <ResultCard v-for="playlist in playlists" :key="playlist.id" type="playlist" :result="playlist" />
+        <ResultCard
+          v-for="playlist in playlists"
+          :key="playlist.id"
+          type="playlist"
+          :result="playlist"
+          @click="onCardClick('playlist', playlist)" />
       </div>
     </div>
   </div>
@@ -81,11 +97,7 @@ export default {
     },
 
     tracks() {
-      return this.results.tracks;
-    },
-
-    firstTracks() {
-      return this.tracks.slice(0, 4);
+      return this.results.tracks.slice(0, 4);
     },
 
     artists() {
@@ -108,6 +120,8 @@ export default {
 
       if (resourceType === 'track') routeName += 'Tracks';
       if (resourceType === 'artist') routeName += 'Artists';
+      if (resourceType === 'album') routeName += 'Albums';
+      if (resourceType === 'playlist') routeName += 'Playlists';
 
       return { name: routeName, params: { query: query } };
     },
@@ -119,8 +133,14 @@ export default {
       }
     },
 
-    onArtistCardClick(artist) {
-      this.$router.push({ name: 'Artist', params: { id: artist.id } });
+    onCardClick(type, result) {
+      let routeName = '';
+
+      if (type === 'artist') routeName = 'Artist';
+      if (type === 'album') routeName = 'Album';
+      if (type === 'playlist') routeName = 'Playlist';
+
+      this.$router.push({ name: routeName, params: { id: result.id } });
     }
   },
 

@@ -65,7 +65,7 @@ export default {
 .result-card img {
   width: 150px;
   height: 150px;
-  border-radius: 15px;
+  border-radius: 3px;
 }
 
 .result-card img.circle {

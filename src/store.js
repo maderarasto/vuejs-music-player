@@ -21,6 +21,8 @@ const store = new Vuex.Store({
     searchResults: { albums: [], artists: [], playlists: [], tracks: []},
     searchTracks: [],
     searchArtists: [],
+    searchAlbums: [],
+    searchPlaylists: [],
 
     scrollPosition: {
       x: 0,
@@ -76,6 +78,14 @@ const store = new Vuex.Store({
 
     searchArtists(state) {
       return state.searchArtists;
+    },
+
+    searchAlbums(state) {
+      return state.searchAlbums;
+    },
+
+    searchPlaylists(state) {
+      return state.searchPlaylists;
     },
 
     scrollPosition(state) {
@@ -202,6 +212,32 @@ const store = new Vuex.Store({
             id: artist.id,
             name: artist.name,
             images: artist.images
+          })
+      );
+    },
+
+    setSearchAlbums(state, albums) {
+      state.searchAlbums = [];
+
+      albums.items.forEach(album =>
+          state.searchAlbums.push({
+            id: album.id,
+            name: album.name,
+            artists: album.artists,
+            images: album.images
+          })
+      );
+    },
+
+    setSearchPlaylists(state, playlists) {
+      state.searchPlaylists = [];
+
+      playlists.items.forEach(playlist =>
+          state.searchPlaylists.push({
+            id: playlist.id,
+            name: playlist.name,
+            owner: playlist.owner,
+            images: playlist.images
           })
       );
     },
@@ -343,6 +379,22 @@ const store = new Vuex.Store({
       spotifyAPI.search(query, ['artist'], { limit: 50 })
           .then(data => {
             commit('setSearchArtists', data.artists);
+          })
+          .catch(error => console.error(error));
+    },
+
+    searchAlbums({commit}, query) {
+      spotifyAPI.search(query, ['album'], { limit: 50 })
+          .then(data => {
+            commit('setSearchAlbums', data.albums);
+          })
+          .catch(error => console.error(error));
+    },
+
+    searchPlaylists({commit}, query) {
+      spotifyAPI.search(query, ['playlist'], { limit: 50 })
+          .then(data => {
+            commit('setSearchPlaylists', data.playlists);
           })
           .catch(error => console.error(error));
     }
