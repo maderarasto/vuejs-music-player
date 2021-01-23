@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import SpotifyAPI from "spotify-web-api-js";
 import Utils from '@/utils';
+import utils from "@/utils";
 
 Vue.use(Vuex);
 
@@ -362,6 +363,7 @@ const store = new Vuex.Store({
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
           .then(data => {
+            utils.findTopResource(data);
             commit('setSearchResults', data);
           })
           .catch(error => console.error(error));

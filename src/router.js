@@ -14,22 +14,22 @@ const router = new VueRouter({
     {
       path: '/search',
       name: 'Browse',
-      component: () => import('@/pages/Browse')
+      component: () => import('@/pages/search/Browse')
     },
     {
       path: '/search/:query',
       name: 'Search',
-      component: () => import('@/pages/Search')
+      component: () => import('@/pages/search/Search')
     },
     {
       path: '/search/:query/tracks',
       name: 'SearchTracks',
-      component: () => import('@/pages/SearchTracks')
+      component: () => import('@/pages/search/SearchTracks')
     },
     {
       path: '/search/:query/artists',
       name: 'SearchArtists',
-      component: () => import('@/pages/SearchResults'),
+      component: () => import('@/pages/search/SearchResults'),
       props: {
         type: 'artist'
       }
@@ -37,7 +37,7 @@ const router = new VueRouter({
     {
       path: '/search/:query/albums',
       name: 'SearchAlbums',
-      component: () => import('@/pages/SearchResults'),
+      component: () => import('@/pages/search/SearchResults'),
       props: {
         type: 'album'
       }
@@ -45,7 +45,7 @@ const router = new VueRouter({
     {
       path: '/search/:query/playlists',
       name: 'SearchPlaylists',
-      component: () => import('@/pages/SearchResults'),
+      component: () => import('@/pages/search/SearchResults'),
       props: {
         type: 'playlist'
       }
@@ -53,12 +53,32 @@ const router = new VueRouter({
     {
       path: '/collection',
       name: 'Library',
-      component: () => import('@/pages/Collection')
-    },
-    {
-      path: '/collection/tracks',
-      name: 'LikedSongs',
-      component: () => import('@/components/playlist/Playlist')
+      redirect: '/collection/playlists',
+      component: () => import('@/pages/collections/Collection'),
+      children: [
+        {
+          path: '/collection/tracks',
+          name: 'LikedSongs',
+          component: () => import('@/components/playlist/Playlist')
+        },
+        {
+          path: '/collection/playlists',
+          name: 'Playlists',
+          component: () => import('@/pages/collections/PlaylistCollection')
+        },
+        {
+          path: '/collection/podcasts',
+          name: 'Podcasts'
+        },
+        {
+          path: '/collection/artists',
+          name: 'Artists'
+        },
+        {
+          path: '/collection/albums',
+          name: 'Albums'
+        }
+      ]
     },
     {
       path: '/playlists/:id',
