@@ -1,7 +1,8 @@
 <template>
   <nav :class="navClasses">
     <div class="nav-left">
-      <SearchInput v-if="shouldSearchShow" @input="onSearchInput"/>
+      <SearchInput v-if="showSearch" @input="onSearchInput"/>
+      <CollectionNav v-if="showCollectionNav" />
     </div>
     <div class="nav-right">
       <UserDropdown />
@@ -12,10 +13,12 @@
 <script>
 import SearchInput from "@/components/SearchInput";
 import UserDropdown from '@/components/UserDropdown';
+import CollectionNav from "@/components/CollectionNav";
 
 export default {
   name: 'PlayerNav',
   components: {
+    CollectionNav,
     SearchInput,
     UserDropdown
   },
@@ -25,14 +28,14 @@ export default {
   },
 
   computed: {
-    shouldSearchShow() {
-      const routes = [
-        'Browse',
-        'Search',
-        'SearchTracks',
-        'SearchArtists',
-        'SearchPlaylists'
-      ];
+    showSearch() {
+      const routes = ['Browse', 'Search', 'SearchTracks', 'SearchArtists', 'SearchPlaylists'];
+
+      return routes.includes(this.$route.name);
+    },
+
+    showCollectionNav() {
+      const routes = ['Playlists', 'Podcasts', 'Artists', 'Albums'];
 
       return routes.includes(this.$route.name);
     },

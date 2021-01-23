@@ -1,5 +1,6 @@
 <template>
   <div class="collection">
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,7 +11,9 @@ export default {
 </script>
 
 <style>
-.collection h1 {
-  color: white;
+.collection {
+  margin-top: 80px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 </style>
