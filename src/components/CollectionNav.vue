@@ -1,7 +1,6 @@
 <template>
   <div class="collection-nav">
     <router-link class="collection-link" :class="getLinkClass('Playlists')" :to="{name: 'Playlists'}">Playlists</router-link>
-    <router-link class="collection-link" :class="getLinkClass('Podcasts')" :to="{name: 'Podcasts'}">Podcasts</router-link>
     <router-link class="collection-link" :class="getLinkClass('Artists')" :to="{name: 'Artists'}">Artists</router-link>
     <router-link class="collection-link" :class="getLinkClass('Albums')" :to="{name: 'Albums'}">Albums</router-link>
   </div>

@@ -19,7 +19,7 @@
 <script>
 import ResultCard from "@/components/cards/ResultCard";
 export default {
-  name: "Playlists",
+  name: "PlaylistCollection",
 
   components: {
     ResultCard

@@ -3,7 +3,7 @@
     <img v-if="image" :class="{circle: type === 'artist'}" :src="image.url" alt="image of the result" />
     <i v-else class="default fas fa-user-circle fa-9x"></i>
     <div class="result-details">
-      <h4>{{ result.name }}</h4>
+      <h4 :title="result.name">{{ result.name }}</h4>
       <span v-if="type === 'artist'" class="result-type">Artist</span>
       <span v-else-if="type === 'playlist'">{{ result.owner.name }}</span>
       <span v-else class="album-artists" v-html="artists"></span>
@@ -77,11 +77,15 @@ export default {
 }
 
 .result-card .result-details {
+  width: 100%;
   margin-top: 15px;
   align-self: flex-start;
 }
 
 .result-details h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: white;
 }
 
