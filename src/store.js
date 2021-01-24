@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 
 import SpotifyAPI from "spotify-web-api-js";
 import Utils from '@/utils';
-import utils from "@/utils";
 
 Vue.use(Vuex);
 
@@ -19,6 +18,8 @@ const store = new Vuex.Store({
     recommendedRockGroups: [],
     recommendedPopGroups: [],
     playlists: [],
+    artists: [],
+    albums: [],
     searchResults: { albums: [], artists: [], playlists: [], tracks: []},
     searchTracks: [],
     searchArtists: [],
@@ -63,6 +64,14 @@ const store = new Vuex.Store({
 
     playlists(state) {
       return state.playlists;
+    },
+
+    artists(state) {
+      return state.artists;
+    },
+
+    albums(state) {
+      return state.albums;
     },
 
     categories(state) {
@@ -135,6 +144,18 @@ const store = new Vuex.Store({
       state.playlists = [];
 
       playlists.forEach(playlist => state.playlists.push(playlist));
+    },
+
+    setArtists(state, artists) {
+      state.artists = [];
+
+      artists.items.forEach(artist => state.artists.push(artist));
+    },
+
+    setAlbums(state, albums) {
+      state.albums = [];
+
+      albums.items.forEach(album => state.albums.push(album));
     },
 
     setCategories(state, categories) {
@@ -360,10 +381,25 @@ const store = new Vuex.Store({
       })
     },
 
+    loadArtists({commit}) {
+      spotifyAPI.getFollowedArtists({ limit: 50 })
+          .then(data => {
+            commit('setArtists', data.artists);
+          })
+          .catch(error => console.error(error));
+    },
+
+    loadAlbums({commit}) {
+      spotifyAPI.getMySavedAlbums({ limit: 50 })
+          .then(data => {
+            commit('setAlbums', data);
+          })
+          .catch(error => console.error(error));
+    },
+
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
           .then(data => {
-            utils.findTopResource(data);
             commit('setSearchResults', data);
           })
           .catch(error => console.error(error));

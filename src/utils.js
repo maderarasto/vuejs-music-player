@@ -4,10 +4,11 @@ const clientID = 'f3017ca61c164cffbaccf73cfdc44bf1';
 
 const scopes = [
   'user-library-read',
+  'user-follow-read',
   'user-read-recently-played',
   'user-read-currently-playing',
   'user-read-playback-position',
-  'playlist-read-private'
+  'playlist-read-private',
 ];
 
 const utils = {

@@ -67,16 +67,14 @@ const router = new VueRouter({
           component: () => import('@/pages/collections/PlaylistCollection')
         },
         {
-          path: '/collection/podcasts',
-          name: 'Podcasts'
-        },
-        {
           path: '/collection/artists',
-          name: 'Artists'
+          name: 'Artists',
+          component: () => import('@/pages/collections/ArtistCollection')
         },
         {
           path: '/collection/albums',
-          name: 'Albums'
+          name: 'Albums',
+          component: () => import('@/pages/collections/AlbumCollection')
         }
       ]
     },
@@ -93,7 +91,8 @@ const router = new VueRouter({
     {
       path: '/albums/:id',
       name: 'Album',
-      component: () => import('@/pages/Album')
+      component: () => import('@/pages/Album'),
+
     }
   ]
 });
