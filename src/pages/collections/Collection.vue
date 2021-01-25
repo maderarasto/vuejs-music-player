@@ -12,8 +12,6 @@ export default {
 
 <style>
 .collection {
-  margin-top: 80px;
   text-align: left;
-  margin-bottom: 15px;
 }
 </style>

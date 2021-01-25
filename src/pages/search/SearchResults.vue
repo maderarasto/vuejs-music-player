@@ -66,9 +66,8 @@ export default {
 
 <style scoped>
 .search-artists {
-  margin-top: 80px;
+  margin: 80px 40px 15px;
   text-align: left;
-  margin-bottom: 15px;
 }
 
 .search-artists h2 {

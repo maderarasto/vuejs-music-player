@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style scoped>
+.album-collection {
+  margin: 80px 40px 0;
+}
+
 .album-collection h2 {
   font-weight: bold;
   color: white;

@@ -287,7 +287,6 @@ const store = new Vuex.Store({
     },
 
     loadSavedTracks(context) {
-
       spotifyAPI.getMySavedTracks().then(data => {
         const savedTracks = { tracks: data, name: 'Liked Songs' };
         savedTracks.owner = context.getters.user;
@@ -376,65 +375,65 @@ const store = new Vuex.Store({
     loadPlaylist(_, playlistId) {
       return new Promise((resolve, reject) => {
         spotifyAPI.getPlaylist(playlistId)
-            .then(playlist => resolve(playlist))
-            .catch(error => reject(error));
+          .then(playlist => resolve(playlist))
+          .catch(error => reject(error));
       })
     },
 
     loadArtists({commit}) {
       spotifyAPI.getFollowedArtists({ limit: 50 })
-          .then(data => {
-            commit('setArtists', data.artists);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setArtists', data.artists);
+        })
+        .catch(error => console.error(error));
     },
 
     loadAlbums({commit}) {
       spotifyAPI.getMySavedAlbums({ limit: 50 })
-          .then(data => {
-            commit('setAlbums', data);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setAlbums', data);
+        })
+        .catch(error => console.error(error));
     },
 
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
-          .then(data => {
-            commit('setSearchResults', data);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchResults', data);
+        })
+        .catch(error => console.error(error));
     },
 
     searchTracks({commit}, query) {
       spotifyAPI.search(query, ['track'], { limit: 50 })
-          .then(data => {
-            commit('setSearchTracks', data.tracks);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchTracks', data.tracks);
+        })
+        .catch(error => console.error(error));
     },
 
     searchArtists({commit}, query) {
       spotifyAPI.search(query, ['artist'], { limit: 50 })
-          .then(data => {
-            commit('setSearchArtists', data.artists);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchArtists', data.artists);
+        })
+        .catch(error => console.error(error));
     },
 
     searchAlbums({commit}, query) {
       spotifyAPI.search(query, ['album'], { limit: 50 })
-          .then(data => {
-            commit('setSearchAlbums', data.albums);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchAlbums', data.albums);
+        })
+        .catch(error => console.error(error));
     },
 
     searchPlaylists({commit}, query) {
       spotifyAPI.search(query, ['playlist'], { limit: 50 })
-          .then(data => {
-            commit('setSearchPlaylists', data.playlists);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchPlaylists', data.playlists);
+        })
+        .catch(error => console.error(error));
     }
   }
 });

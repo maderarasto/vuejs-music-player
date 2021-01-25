@@ -6,7 +6,7 @@
         <div class="header">
           <h2>Top result</h2>
         </div>
-        <div class="playlist-card">
+        <div class="playlist-card" @click="onTopPlaylistClick">
           <img v-if="topPlaylist" :src="topPlaylist.images[0].url" alt="top playlist image" />
           <h1 :title="topPlaylist.name">{{ topPlaylist.name }}</h1>
           <span class="badge">Playlist</span>
@@ -141,6 +141,10 @@ export default {
       if (type === 'playlist') routeName = 'Playlist';
 
       this.$router.push({ name: routeName, params: { id: result.id } });
+    },
+
+    onTopPlaylistClick() {
+      this.$router.push({ name: 'Playlist', params: { id: this.topPlaylist.id } });
     }
   },
 
@@ -159,9 +163,8 @@ export default {
 
 <style scoped>
 .search {
-  margin-top: 80px;
+  margin: 80px 40px 15px;
   text-align: left;
-  margin-bottom: 15px;
 }
 
 .section .header {

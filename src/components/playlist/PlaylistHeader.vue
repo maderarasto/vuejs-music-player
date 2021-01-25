@@ -88,7 +88,6 @@ export default {
 <style>
 .playlist-header{
   position: relative;
-
   width: 100%;
   height: 400px;
 

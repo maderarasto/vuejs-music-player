@@ -91,13 +91,13 @@ export default {
 <style>
 .browse {
   position: relative;
-  margin-top: 80px;
+  margin: 80px 40px 0;
   text-align: left;
 }
 
 .browse .float-button {
   position: absolute;
-  top: 125px;
+  top: 150px;
   z-index: 2;
 }
 
