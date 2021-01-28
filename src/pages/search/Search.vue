@@ -7,7 +7,7 @@
           <h2>Top result</h2>
         </div>
         <div class="playlist-card" @click="onTopPlaylistClick">
-          <img v-if="topPlaylist" :src="topPlaylist.images[0].url" alt="top playlist image" />
+          <img v-if="topPlaylistImage" :src="topPlaylistImage.url" alt="top playlist image" />
           <h1 :title="topPlaylist.name">{{ topPlaylist.name }}</h1>
           <span class="badge">Playlist</span>
         </div>
@@ -94,6 +94,10 @@ export default {
 
     topPlaylist() {
       return this.results.playlists.length > 0 ? this.results.playlists[0] : null;
+    },
+
+    topPlaylistImage() {
+      return this.topPlaylist.images.length > 0 ? this.topPlaylist.images[0] : null;
     },
 
     tracks() {

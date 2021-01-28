@@ -13,13 +13,18 @@ const store = new Vuex.Store({
     playing: false,
     playedTrack: null,
     savedTracks: null,
+
+    album: null,
     categories: [],
+
     recentlyPlayedGroups: [],
     recommendedRockGroups: [],
     recommendedPopGroups: [],
+
     playlists: [],
     artists: [],
     albums: [],
+
     searchResults: { albums: [], artists: [], playlists: [], tracks: []},
     searchTracks: [],
     searchArtists: [],
@@ -44,6 +49,10 @@ const store = new Vuex.Store({
 
     playedTrack(state) {
       return state.playedTrack;
+    },
+
+    album(state) {
+      return state.album;
     },
 
     savedTracks(state) {
@@ -118,6 +127,10 @@ const store = new Vuex.Store({
 
     setSavedTracks(state, savedTracks) {
       state.savedTracks = savedTracks;
+    },
+
+    setAlbum(state, album) {
+      state.album = album;
     },
 
     addRecentlyPlayedGroup(state, group) {
@@ -295,6 +308,14 @@ const store = new Vuex.Store({
       });
     },
 
+    loadAlbum({commit}, albumId) {
+      spotifyAPI.getAlbum(albumId)
+          .then(data => {
+            commit('setAlbum', data);
+          })
+          .catch(error => console.error(error));
+    },
+
     loadUserPlaylists({commit}) {
       spotifyAPI.getUserPlaylists().then(playlists => {
         commit('setPlaylists', playlists.items);
@@ -396,6 +417,14 @@ const store = new Vuex.Store({
         .catch(error => console.error(error));
     },
 
+    loadArtistAlbums(_, artistId) {
+      return new Promise((resolve, reject) => {
+        spotifyAPI.getArtistAlbums(artistId, { limit: 50 })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      })
+    },
+
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
         .then(data => {
@@ -434,7 +463,17 @@ const store = new Vuex.Store({
           commit('setSearchPlaylists', data.playlists);
         })
         .catch(error => console.error(error));
-    }
+    },
+
+    checkSavedAlbum(_, albumId) {
+      return new Promise((resolve, reject) => {
+        spotifyAPI.containsMySavedAlbums([albumId])
+            .then(data => resolve(data[0]))
+            .catch(error => reject(error));
+      });
+    },
+
+
   }
 });
 

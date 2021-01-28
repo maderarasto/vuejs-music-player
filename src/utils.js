@@ -115,6 +115,23 @@ const utils = {
       image: resource.images ? resource.images[0].url : '',
       description: description
     });
+  },
+
+  getImageMainColor(imageElement) {
+    const canvas = document.createElement('canvas');
+    const image = new Image(imageElement.width, imageElement.height);
+
+    canvas.width = imageElement.width;
+    canvas.height = imageElement.height;
+    image.src = imageElement.src;
+    image.crossOrigin = "Anonymous";
+
+    return new Promise(resolve => {
+      image.onload = () => {
+        canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height);
+        resolve(canvas.getContext('2d').getImageData(50, 50, 1, 1).data);
+      }
+    });
   }
 };
 
