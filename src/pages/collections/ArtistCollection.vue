@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style scoped>
+.artist-collection {
+  margin: 80px 40px 0;
+}
+
 .artist-collection h2 {
   font-weight: bold;
   color: white;

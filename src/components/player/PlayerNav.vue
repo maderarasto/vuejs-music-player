@@ -29,7 +29,7 @@ export default {
 
   computed: {
     showSearch() {
-      const routes = ['Browse', 'Search', 'SearchTracks', 'SearchArtists', 'SearchPlaylists'];
+      const routes = ['Browse', 'Search', 'SearchTracks', 'SearchArtists', 'SearchAlbums', 'SearchPlaylists'];
 
       return routes.includes(this.$route.name);
     },

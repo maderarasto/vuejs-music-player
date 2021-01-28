@@ -6,8 +6,8 @@
         <div class="header">
           <h2>Top result</h2>
         </div>
-        <div class="playlist-card">
-          <img v-if="topPlaylist" :src="topPlaylist.images[0].url" alt="top playlist image" />
+        <div class="playlist-card" @click="onTopPlaylistClick">
+          <img v-if="topPlaylistImage" :src="topPlaylistImage.url" alt="top playlist image" />
           <h1 :title="topPlaylist.name">{{ topPlaylist.name }}</h1>
           <span class="badge">Playlist</span>
         </div>
@@ -96,6 +96,10 @@ export default {
       return this.results.playlists.length > 0 ? this.results.playlists[0] : null;
     },
 
+    topPlaylistImage() {
+      return this.topPlaylist.images.length > 0 ? this.topPlaylist.images[0] : null;
+    },
+
     tracks() {
       return this.results.tracks.slice(0, 4);
     },
@@ -141,6 +145,10 @@ export default {
       if (type === 'playlist') routeName = 'Playlist';
 
       this.$router.push({ name: routeName, params: { id: result.id } });
+    },
+
+    onTopPlaylistClick() {
+      this.$router.push({ name: 'Playlist', params: { id: this.topPlaylist.id } });
     }
   },
 
@@ -159,9 +167,8 @@ export default {
 
 <style scoped>
 .search {
-  margin-top: 80px;
+  margin: 80px 40px 15px;
   text-align: left;
-  margin-bottom: 15px;
 }
 
 .section .header {

@@ -45,7 +45,7 @@ export default {
 <style>
 .result-card {
   display: flex;
-  width: 180px;
+  width: 200px;
   height: 275px;
   padding: 15px;
   border-radius: 5px;
@@ -55,16 +55,16 @@ export default {
   align-items: center;
   cursor: pointer;
 
-  background: #1f1f1f;
-}
-
-.result-card:hover {
   background: #2f2f2f;
 }
 
+.result-card:hover {
+  background: #4f4f4f;
+}
+
 .result-card img {
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   border-radius: 3px;
 }
 

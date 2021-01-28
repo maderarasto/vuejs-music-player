@@ -13,13 +13,18 @@ const store = new Vuex.Store({
     playing: false,
     playedTrack: null,
     savedTracks: null,
+
+    album: null,
     categories: [],
+
     recentlyPlayedGroups: [],
     recommendedRockGroups: [],
     recommendedPopGroups: [],
+
     playlists: [],
     artists: [],
     albums: [],
+
     searchResults: { albums: [], artists: [], playlists: [], tracks: []},
     searchTracks: [],
     searchArtists: [],
@@ -44,6 +49,10 @@ const store = new Vuex.Store({
 
     playedTrack(state) {
       return state.playedTrack;
+    },
+
+    album(state) {
+      return state.album;
     },
 
     savedTracks(state) {
@@ -118,6 +127,10 @@ const store = new Vuex.Store({
 
     setSavedTracks(state, savedTracks) {
       state.savedTracks = savedTracks;
+    },
+
+    setAlbum(state, album) {
+      state.album = album;
     },
 
     addRecentlyPlayedGroup(state, group) {
@@ -287,13 +300,20 @@ const store = new Vuex.Store({
     },
 
     loadSavedTracks(context) {
-
       spotifyAPI.getMySavedTracks().then(data => {
         const savedTracks = { tracks: data, name: 'Liked Songs' };
         savedTracks.owner = context.getters.user;
 
         context.commit('setSavedTracks', savedTracks);
       });
+    },
+
+    loadAlbum({commit}, albumId) {
+      spotifyAPI.getAlbum(albumId)
+          .then(data => {
+            commit('setAlbum', data);
+          })
+          .catch(error => console.error(error));
     },
 
     loadUserPlaylists({commit}) {
@@ -376,66 +396,84 @@ const store = new Vuex.Store({
     loadPlaylist(_, playlistId) {
       return new Promise((resolve, reject) => {
         spotifyAPI.getPlaylist(playlistId)
-            .then(playlist => resolve(playlist))
-            .catch(error => reject(error));
+          .then(playlist => resolve(playlist))
+          .catch(error => reject(error));
       })
     },
 
     loadArtists({commit}) {
       spotifyAPI.getFollowedArtists({ limit: 50 })
-          .then(data => {
-            commit('setArtists', data.artists);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setArtists', data.artists);
+        })
+        .catch(error => console.error(error));
     },
 
     loadAlbums({commit}) {
       spotifyAPI.getMySavedAlbums({ limit: 50 })
-          .then(data => {
-            commit('setAlbums', data);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setAlbums', data);
+        })
+        .catch(error => console.error(error));
+    },
+
+    loadArtistAlbums(_, artistId) {
+      return new Promise((resolve, reject) => {
+        spotifyAPI.getArtistAlbums(artistId, { limit: 50 })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      })
     },
 
     search({commit}, query) {
       spotifyAPI.search(query, [ 'album', 'artist', 'playlist', 'track'], { limit: 10 })
-          .then(data => {
-            commit('setSearchResults', data);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchResults', data);
+        })
+        .catch(error => console.error(error));
     },
 
     searchTracks({commit}, query) {
       spotifyAPI.search(query, ['track'], { limit: 50 })
-          .then(data => {
-            commit('setSearchTracks', data.tracks);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchTracks', data.tracks);
+        })
+        .catch(error => console.error(error));
     },
 
     searchArtists({commit}, query) {
       spotifyAPI.search(query, ['artist'], { limit: 50 })
-          .then(data => {
-            commit('setSearchArtists', data.artists);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchArtists', data.artists);
+        })
+        .catch(error => console.error(error));
     },
 
     searchAlbums({commit}, query) {
       spotifyAPI.search(query, ['album'], { limit: 50 })
-          .then(data => {
-            commit('setSearchAlbums', data.albums);
-          })
-          .catch(error => console.error(error));
+        .then(data => {
+          commit('setSearchAlbums', data.albums);
+        })
+        .catch(error => console.error(error));
     },
 
     searchPlaylists({commit}, query) {
       spotifyAPI.search(query, ['playlist'], { limit: 50 })
-          .then(data => {
-            commit('setSearchPlaylists', data.playlists);
-          })
-          .catch(error => console.error(error));
-    }
+        .then(data => {
+          commit('setSearchPlaylists', data.playlists);
+        })
+        .catch(error => console.error(error));
+    },
+
+    checkSavedAlbum(_, albumId) {
+      return new Promise((resolve, reject) => {
+        spotifyAPI.containsMySavedAlbums([albumId])
+            .then(data => resolve(data[0]))
+            .catch(error => reject(error));
+      });
+    },
+
+
   }
 });
 

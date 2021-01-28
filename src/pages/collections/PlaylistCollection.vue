@@ -48,6 +48,10 @@ export default {
 </script>
 
 <style scoped>
+.playlist-collection {
+  margin: 80px 40px 0;
+}
+
 .playlist-collection h2 {
   font-weight: bold;
   color: white;

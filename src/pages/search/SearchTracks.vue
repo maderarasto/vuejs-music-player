@@ -123,9 +123,8 @@ export default {
 
 <style>
 .search-tracks {
-  margin-top: 80px;
+  margin: 80px 40px 15px;
   text-align: left;
-  margin-bottom: 15px;
 }
 
 .search-tracks h2 {
