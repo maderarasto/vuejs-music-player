@@ -1,10 +1,10 @@
 # VueJS Music Player
 
-A project represents a music player based by Spotify App with using Spotify API for authentication a for the access to saved playlists, tracks and albums.
+A project represents a music player based on Spotify App with using Spotify API for authentication a for the access to saved playlists, tracks and albums.
 
 ## What is it about?
 
-A project represents a Music Player developed in VueJS using Vuex, Vue Router and JS Wrapper for Spotify API.
+A project represents a Music Player developed in **VueJS** using **Vuex**, **Vue Router** and JS Wrapper for **Spotify API**.
 VueJS Music Player is based on Spotify App (clone) and uses a Spotify API for authentication and for the access to user's saved playlists, tracks and albums. Vuex Store maintains a current state of application and Vue Router processes routes in the application.
 
 ## Preview
